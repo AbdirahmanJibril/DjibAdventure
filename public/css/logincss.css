@@ -34,11 +34,11 @@ form {
   input[type=text], input[type=password] {
       background-color: lightskyblue;
     width: 100%;
-    padding: 12px 20px;
+    padding: 10px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    box-sizing: border-box;
+    
   }
   
   /* Set a style for all buttons */
@@ -56,7 +56,10 @@ form {
   button:hover {
     opacity: 0.8;
   }
-  
+  .fas{
+    display: inline-block;
+    background-color: cadetblue;
+  }
   /* Extra style for the cancel button (red) */
   .cancelbtn {
     width: auto;

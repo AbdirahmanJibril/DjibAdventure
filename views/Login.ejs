@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+        <script src="https://kit.fontawesome.com/6b43684e60.js" crossorigin="anonymous"></script>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
@@ -12,18 +12,21 @@
       </head>
       <body >
 
-      <form action="/Login" method="post">
+      <form action="/Login" method="POST">
         <h2>Login</h2>
         <div class="imgcontainer">
           <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
         </div>
       
         <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
+          <label for="name"><b>Name</b></label>
+          <input type="text" placeholder="Name" name="name" required>
+
+          <label for="username"><b>Email</b></label>
+          <input type="text" placeholder="Email" name="username" required>
       
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required>
       
           <button type="submit">Login</button>
           

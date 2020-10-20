@@ -5,30 +5,47 @@ const bodyParser = require("body-parser");
 const https= require("https");
 var moment = require("moment");
 const mongoose = require('mongoose');
-const encrypt = require("mongoose-encryption");
 const ejs = require("ejs");
-
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const port=3000;
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
+moment.locale("fr");
+var djibLocal = moment().format("LL");
+
+app.use(session({
+  secret: 'myDjibHolidaySite',
+  resave: false,
+  saveUninitialized: false
+  
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 mongoose.connect('mongodb://localhost:27017/UserData', {useNewUrlParser: true, useUnifiedTopology: true});
-
+mongoose.set('useCreateIndex', true)
 const userSchema = new mongoose.Schema({
   email: String,
-  password:String
-});
+  password:String,
+  name:String
+  
+ });
 
+userSchema.plugin(passportLocalMongoose);
 
-userSchema.plugin(encrypt, { secret: process.env.SECRET,  encryptedFields: ['password'] });
 const User = mongoose.model('User', userSchema);
 
-moment.locale("fr");
-
-var djibLocal = moment().format("LL");
+passport.use(User.createStrategy());
+ 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", function(req,res){
 
@@ -61,52 +78,85 @@ app.get("/home", function(req,res){
   res.render("home");
 });
 
+app.get("/userspage", function(req,res){
+const name=req.user.name;
+ if (req.isAuthenticated()){
+   res.render("userspage", ({Greetings:name}));
+  
+  
+ }else{
+    res.redirect("/login");
+  }
+ });
+
 app.get("/Register", function(req,res) {
+ 
+
     res.render("Register");
     
 });
 
 app.get("/Login", function(req,res) {
+ 
   res.render("Login");
+
 });
 
 
 app.post("/Register", function (req,res) {
+
   
-  const newUser= new User({
-    email:req.body.uname,
-    password:req.body.psw
-  });
-  newUser.save(function(err){
-    if(err){
+  User.register({username: req.body.username}, req.body.password, function(err, user) {
+   
+    if (err) { 
       console.log(err);
-    }else{
-      res.render("Login");
+      res.redirect("/Register");
+     
+    }else {
+     
+      const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        name:req.body.name
+      });
+      
+      
+     
+      passport.authenticate("local")(req,res, function(){
+        res.redirect("/userspage");
+      });
     }
-  });
+    
+});
 });
 
 app.post("/Login",function (req,res) {
-  const username=req.body.uname;
-  const password=req.body.psw;
-
-  User.findOne({email:username}, function(err,foundUser){
+ 
+  const user  = new User({
+    username: req.body.username,
+    password: req.body.password,
+    name:req.body.name
+    
+  });
+  
+  req.login(user,function(err){
     if(err){
       console.log(err);
     }else{
-      if(foundUser){
-        if (foundUser.password===password){
-          res.render("Members");
-        }
-      }
+      passport.authenticate("local")(req,res,function(){
+        res.redirect("/userspage");
+      });
     }
   });
 });
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 
 
 app.listen(port,function(){
   console.log("server is up and running");
-
 });

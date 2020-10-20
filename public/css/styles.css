@@ -44,7 +44,6 @@ height: 400px;
 
   font-family: 'helvetica neue';
   font-size: 0.75rem;
-  color: black;
   display: inline-block;
   text-align: center;
   margin:1px;
@@ -79,16 +78,16 @@ display: inline-block;
     padding-top: 2px;
     height: 100px;
     padding-bottom: 0;
-    border: 0;
+    border: 0x;
     border-radius: 0;
     margin-bottom: 0;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 5px;
     background-color: #cbf1f5;
     
 }
-.nav-item{
-  color:green;
+.navbar-nav.nav-item{
+ 
   font-weight: 500;
 }
 .nav-item a:hover {
@@ -145,21 +144,43 @@ display: inline-block;
 .container-fluid.whale-section{
   
   margin-bottom: 100px;
-  font-size: 0.90rem;
+  font-size: 1.2rem;
    background-color:#a6e3e9;
-   
+   color: rgb(7, 139, 133);
    }
+   .whale-section p{
+     font-size: 0.95rem;
+     color:  Black;
+   }
+   
+   
+   .cruise-image{
+
+     background-image: url(/images/cruise.jpg);
+     background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  margin-top: 15px; 
+  margin-right: 15px;
+   }
+   .snorking-image{
+    background-image: url(/images/snorking1.jpg);
+    background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  margin-bottom: 15px;
+  margin-left: 15px;
+  }
+  
   .col-sm.whaletext{
     padding: 2%;
+    text-align: center;
   }
- .djibwhale > img{
+ /* .djibwhale img{
   max-width:100%;
   max-height: 200%;
-  margin: 2%;
-  
-
-  clip-path:polygon(23% 0, 100% 0%, 100% 100%, 0% 100%);
-}
+   
+} */
 
 .form-group{
   width: 50%;
