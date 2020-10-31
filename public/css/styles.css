@@ -81,6 +81,7 @@ display: inline-block;
     border: 0x;
     border-radius: 0;
     margin-bottom: 0;
+    margin-right: 50px;
     font-size: 14px;
     letter-spacing: 5px;
     background-color: #cbf1f5;
@@ -97,6 +98,7 @@ display: inline-block;
 
 .dropdown-menu{
   background-color: #93c3c7;
+  margin-right: 50px;
 }
 
 
@@ -118,6 +120,9 @@ display: inline-block;
   background-color:#e3fdfd;
  
 }
+.list-group-item>p{
+  font-size: .95rem;
+}
 .card-body > P{
   padding-left: 10px;
  text-align: left;
@@ -128,6 +133,7 @@ display: inline-block;
 }
 .fas,  .far{
   margin-right: 10px;
+  margin-left: 5px;
 }
 
 
@@ -154,22 +160,22 @@ display: inline-block;
    }
    
    
-   .cruise-image{
+   .col-sm.snorking-image{
 
-     background-image: url(/images/cruise.jpg);
+     background-image: url(/images/snorkeling1.jpg);
      background-position: center;
   background-repeat: no-repeat; 
   background-size: cover;
-  margin-top: 15px; 
-  margin-right: 15px;
+  margin-bottom: 15px; 
+  margin-left: 15px;
    }
-   .snorking-image{
-    background-image: url(/images/snorking1.jpg);
+   .col-sm.cruise-image{
+    background-image: url(/images/boat.jpg);
     background-position: center;
   background-repeat: no-repeat; 
   background-size: cover; 
-  margin-bottom: 15px;
-  margin-left: 15px;
+  margin-top: 15px;
+  margin-right: 15px;
   }
   
   .col-sm.whaletext{

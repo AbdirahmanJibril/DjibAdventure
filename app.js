@@ -9,6 +9,7 @@ const ejs = require("ejs");
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const nodemailer = require("nodemailer");
 
 const port=3000;
 const app = express();
@@ -31,11 +32,22 @@ app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/UserData', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true)
-const userSchema = new mongoose.Schema({
-  email: String,
-  password:String,
-  name:String
+
+const tripSchema = new mongoose.Schema({
+  Trip:String,
+  Date:Date,
+  person:Number
   
+});
+
+const  Trip = mongoose.model("Trip",tripSchema);
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  password:String,
+  username:String,
+  Adventure:[tripSchema]
+          
  });
 
 userSchema.plugin(passportLocalMongoose);
@@ -60,7 +72,7 @@ https.get(url, function(response){
   const urlimage = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
   res.render('home', ({
-
+    user:req.user,
     Temperature:temp,
     WeatherDescription:weatherDiscription,
     weatherIcon: urlimage,
@@ -75,36 +87,79 @@ https.get(url, function(response){
 });
 
 app.get("/home", function(req,res){
-  res.render("home");
+  res.render("home", {user:req.user});
+  
 });
+
 
 app.get("/userspage", function(req,res){
-const name=req.user.name;
- if (req.isAuthenticated()){
-   res.render("userspage", ({Greetings:name}));
-  
-  
- }else{
-    res.redirect("/login");
-  }
- });
 
-app.get("/Register", function(req,res) {
- 
-
-    res.render("Register");
+   if (req.isAuthenticated()){
+     
+    User.findById(req.user._id, function(err, foundUser){
+      if (err){
+        console.log(err);
+      }else{
+        // console.log(foundUser.Adventure);
+      
+      res.render("userspage", {user:req.user,  Booking:foundUser});
+      
+      }
+    });
+  
     
-});
+  }else{
+     res.redirect("/login");
+   }
+   
+  });
+  
+  app.post("/userspage", function(req, res){
+       
+   
+     const trip =  new Trip({
+      
+        Trip:req.body.destination,
+        Date:req.body.adventureDate,
+        person:req.body.poeple
+       
+     });   
 
-app.get("/Login", function(req,res) {
+     trip.save();
+     
+     User.findById(req.user._id,  function(err, foundUser){
+       if(err){
+         console.log(err);
+       }else{
+        foundUser.Adventure.push(trip);
+        foundUser.save();
+       }
+       res.redirect("/userspage");
+     });
+            
+    
+    });     
+      
+     
  
-  res.render("Login");
+ app.get("/Register", function(req,res) {
+  
+ 
+     res.render("Register", {user:req.user});
+     
+ });
+ 
+ app.get("/Login", function(req,res) {
+     res.render("Login",{user:req.user});
+     
+  });
 
+ app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
-
 
 app.post("/Register", function (req,res) {
-
   
   User.register({username: req.body.username}, req.body.password, function(err, user) {
    
@@ -113,49 +168,45 @@ app.post("/Register", function (req,res) {
       res.redirect("/Register");
      
     }else {
-     
       const user = new User({
         username: req.body.username,
         password: req.body.password,
         name:req.body.name
       });
-      
-      
-     
+         
+    
+         
       passport.authenticate("local")(req,res, function(){
         res.redirect("/userspage");
       });
-    }
+      
+    }  
     
 });
+
+ 
 });
 
 app.post("/Login",function (req,res) {
- 
+  
   const user  = new User({
     username: req.body.username,
     password: req.body.password,
     name:req.body.name
     
   });
-  
+   
   req.login(user,function(err){
-    if(err){
+     if(err){
       console.log(err);
     }else{
-      passport.authenticate("local")(req,res,function(){
-        res.redirect("/userspage");
+       passport.authenticate("local")(req,res,function(){
+       res.redirect("/userspage");
       });
     }
   });
+  
 });
-
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
-
 
 app.listen(port,function(){
   console.log("server is up and running");

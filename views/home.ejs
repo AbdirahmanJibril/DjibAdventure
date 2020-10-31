@@ -1,6 +1,83 @@
 
-    <%- include('partials/header'); -%>
+   <!DOCTYPE html>
+   <html lang="en" dir="ltr">
+   
+   <head>
+     <meta charset="utf-8">
+     <title>Djib Holidays</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+       <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+       <script src="https://kit.fontawesome.com/6b43684e60.js" crossorigin="anonymous"></script>
+       <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href="css/styles.css">
+   
+     </head>
+   
+   <body>
+     
+     <nav class="navbar navbar-expand-lg">
+       <a class="navbar-brand" href="#">Navbar</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+     
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav ml-auto">
+           
+            <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Adventures
+             </a>
+             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+              <div class="dropdown-divide">
+               <a class="dropdown-item" href="#">Arta</a>
+               <a class="dropdown-item" href="#">Ali Sabieh</a>
+               <a class="dropdown-item" href="#">Dikhil</a>
+               <a class="dropdown-item" href="#">Djibouti</a>
+               <a class="dropdown-item" href="#">Tadjourah</a>
+             </div>
+             </div>
+           </li>
+           
+           
+      
+              <%if (user){%>
+               
 
+                 <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle fa-lg"></i>
+                  </a>
+                 <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                  <div class="dropdown-divide">
+                   <a class="dropdown-item" href="/userspage">My Page</a>
+                   <a class="dropdown-item" href="#">Profile</a>
+                   <a class="dropdown-item" href="#">Reset-Password</a>
+                   <a class="nav-link" href="/Logout"><span class="LogReg">Logout</span></a>
+                  </div>
+                  </div>
+                  </li>
+
+                   <!-- <li class="nav-item">
+                  <a class="nav-link" href="/userspage"><span class="LogReg"><i class="fas fa-user-circle"></i></span></a>
+                 </li>  -->
+
+                <%}else {%>
+
+              <li class="nav-item">
+                 <a class="nav-link" href="/Register"><span class="LogReg">Join Us</span></a>
+             </li>
+              
+               <li class="nav-item">
+             <a class="nav-link" href="/Login"><span class="LogReg"> Login</i></span></a>
+            </li> 
+
+            <%}%>   
+         </ul>
+         
+       </div>
+     </nav>
     <div class="weather-div">
       <p>Djibouti <%=dateandtime%>, </p>
       <p><i class="fas fa-temperature-high"></i></p>
@@ -29,9 +106,9 @@
           <p class="card-text">The most beautfull undersea wildlife can be found here, clean and clear the nature is here at display </p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="far fa-calendar-check"></i> 2 days </li>
-          <li class="list-group-item"><i class="fas fa-swimmer"></i> Diving tours</li>
-          <li class="list-group-item"><i class="fas fa-umbrella-beach"></i> Sun and See</li>
+          <li class="list-group-item"><i class="far fa-calendar-check fa-fw"></i> <p>2 days </p></li>
+          <li class="list-group-item"><i class="fas fa-swimmer fa-fw"></i><p> Diving tours</p></li>
+          <li class="list-group-item"><i class="fas fa-umbrella-beach fa-fw"></i><p>Sun and See</p> </li>
           
         </ul>
         <div class="card-body">
@@ -46,9 +123,9 @@
       <p class="card-text">SBeautifull Beach to relax and swim peacfully</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><i class="far fa-calendar-check"></i>2 Days</li>
-      <li class="list-group-item"> <i class="fas fa-swimmer"></i>Swimming in tranquility</li>
-      <li class="list-group-item"><i class="fas fa-fish"></i>snorkelling to find out  underseat wildlife</li>
+      <li class="list-group-item"><i class="far fa-calendar-check fa-fw"></i><p class="pcards"><p>2 Days</p></p></li>
+      <li class="list-group-item"> <i class="fas fa-swimmer fa-fw"></i><p class="pcards"><p>Swimming in tranquility</p></li>
+      <li class="list-group-item"><i class="fas fa-fish fa-fw"></i><p class="pcards"><p>snorkelling to find out  underseat wildlife</p></li>
     </ul>
     <div class="card-body">
       <button type="button" class="btn btn-info">Enquiry</button>
@@ -61,9 +138,9 @@
       <p class="card-text">Exeptional reagion of a forest with  mountains of upt  1750 m above sea level</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"> <i class="far fa-calendar-check"></i>3 Days</li></li>
-      <li class="list-group-item"><i class="fas fa-mountain"></i>Mountains of exeptional beauty</li>
-      <li class="list-group-item"> <i class="fas fa-route"></i>Experienced local guides</li>
+      <li class="list-group-item"> <i class="far fa-calendar-check fa-fw"></i><p>3 Days</p></li></li>
+      <li class="list-group-item"><i class="fas fa-mountain fa-fw"></i><p>Mountains of exeptional beauty</p></li>
+      <li class="list-group-item"> <i class="fas fa-route fa-fw"></i><p>Experienced local guides</p></li>
     </ul>
     <div class="card-body">
       <button type="button" class="btn btn-info">Enquiry</button>
@@ -72,7 +149,27 @@
   </div>
 </div>
 </div>
+<div class=" constainer-fluid signs">
+  <div class="row">
+    <div class="col-sm">
+      <i class="fas fa-check fa-3x"></i>
+      <p>Highly rated Adventures</p>
+    </div>
+    <div class="col-sm">
+      <i  class="fas fa-bullseye fa-3x"></i>
+      <p>Highly rated Adventures</p>
+    </div>
+    <div class="col-sm">
+      <i class="far fa-heart fa-3x" ></i>
+      <p>Highly rated Adventures</p>
+    </div>
+  </div>
 
+  <div> </div>
+  <div></i></div>
+  
+
+</div>
 
 <div class="container-fluid whale-section">
   <div class="row">
@@ -82,14 +179,14 @@
       <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
     </div>
     <div class="col-sm cruise-image">
-      <!-- <img src="images/cruise.jpg" alt="djibwhale">  -->
+      <!-- <img src="images/snorkeling1.jpg" alt="djibwhale">  -->
     </div> 
        
   </div>
   <div class="row">
     
     <div class="col-sm snorking-image">
-      <!-- <img src="images/snorking1.jpg" alt="djibwhale">  -->
+      <!-- <img src="images/boat.jpg" alt="djibwhale">  -->
     </div> 
     <div class="col-sm whaletext" >
       <h2>Lac Abee </h2>
@@ -98,7 +195,6 @@
      </div>
        
   </div>
- 
   
   </div>
   <div>
@@ -115,15 +211,29 @@
     </div>
   </div>
   
-     
-
-
-
-
-
-
-
-
 </div>
 
-<%- include('partials/footer'); -%>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>
+
+
+<div class="footer">
+
+    <div class="container">
+        <div class="row">
+          <div class="col">
+           <p>DjibHoliday</p>
+           <p><i class="fas fa-globe"></i>  www.djibholiday.com</p>
+           <p><i class="fas fa-phone"></i>  7788525200</p>
+           <p><i class="fas fa-envelope-open-text"></i>  info@djibholiday.com</p>
+          </div>
+         
+      </div>
+
+</div>
