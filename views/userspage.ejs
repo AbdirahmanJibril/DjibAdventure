@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="css/styles.css">
   
     </head>
-  
+    
   <body>
     
     <nav class="navbar navbar-expand-lg">
@@ -52,7 +52,7 @@
                     <a class="nav-link" href="/Logout"><span class="LogReg">Logout</span></a>
                    <a class="dropdown-item" href="/userspage">My Page</a>
                    <a class="dropdown-item" href="#">Profile</a>
-                   <a class="dropdown-item" href="#">Password-Reset</a>
+                   <a class="dropdown-item" href="/forgot">Password-Reset</a>
                   </div>
                   </div>
                   </li>
@@ -78,9 +78,13 @@
       </div>
     </nav>
 
-<h1>Welcome <%=user.name%></h1>
+  <h1>Welcome <%=user%></h1>
 <h1>Choose your Adventure</h1>
 
+<% if (message) { %>
+  <p><%= message%></p>
+  <% } %>
+  
 <form action="/userspage" method="post">
 
 <label for="destination">Choose your Adventure destination:</label>

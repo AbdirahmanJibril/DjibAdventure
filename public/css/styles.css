@@ -21,15 +21,18 @@ h1.display-4{
   color:white;
 }
 
-
+.error, .registerError{
+  color:red;
+  font-size: 1.2rem;
+}
 
 .jumbotron{
-color:white;
+  color: rgb(7, 139, 133);
 height: 400px;
  background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce);
 }
 .jumbotron p{
-  color:white;
+  color: rgb(7, 139, 133);
   
 }
 .card.herocard{
@@ -160,41 +163,37 @@ display: inline-block;
    }
    
    
-   .col-sm.snorking-image{
-
-     background-image: url(/images/snorkeling1.jpg);
-     background-position: center;
-  background-repeat: no-repeat; 
-  background-size: cover;
-  margin-bottom: 15px; 
-  margin-left: 15px;
+   .img-fluid.boat{
+   margin-bottom: 15px; 
+  margin-left: 15px; 
    }
-   .col-sm.cruise-image{
-    background-image: url(/images/boat.jpg);
-    background-position: center;
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  margin-top: 15px;
-  margin-right: 15px;
+   .img-fluid.snorkeling{
+  margin-top: 20px;
+  margin-right: 15px; 
   }
   
   .col-sm.whaletext{
     padding: 2%;
     text-align: center;
   }
- /* .djibwhale img{
-  max-width:100%;
-  max-height: 200%;
-   
-} */
+
 
 .form-group{
   width: 50%;
-  text-align: center;
+ 
   
 }
 
-
+.container-fluid.signs{
+  margin: 100px auto;
+}
+.faparagraphs{
+  font-size: .95rem;
+ text-align: center;
+ font-weight: bold;
+ margin:20px auto;
+ color: rgb(7, 139, 133);
+}
 .footer-padding {
 	padding-bottom: 20px;
 }

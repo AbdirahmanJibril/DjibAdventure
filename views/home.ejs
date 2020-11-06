@@ -53,7 +53,7 @@
                   <div class="dropdown-divide">
                    <a class="dropdown-item" href="/userspage">My Page</a>
                    <a class="dropdown-item" href="#">Profile</a>
-                   <a class="dropdown-item" href="#">Reset-Password</a>
+                   <a class="dropdown-item" href="/forgot">Reset-Password</a>
                    <a class="nav-link" href="/Logout"><span class="LogReg">Logout</span></a>
                   </div>
                   </div>
@@ -78,6 +78,9 @@
          
        </div>
      </nav>
+     <% if (message) { %>
+      <p><%= message%></p>
+      <% } %>
     <div class="weather-div">
       <p>Djibouti <%=dateandtime%>, </p>
       <p><i class="fas fa-temperature-high"></i></p>
@@ -152,16 +155,16 @@
 <div class=" constainer-fluid signs">
   <div class="row">
     <div class="col-sm">
-      <i class="fas fa-check fa-3x"></i>
-      <p>Highly rated Adventures</p>
+      <i class="fas fa-check fa-3x" style="display:block; color: rgb(7, 139, 133);"></i>
+      <p class="faparagraphs">Highly rated Adventures</p>
     </div>
     <div class="col-sm">
-      <i  class="fas fa-bullseye fa-3x"></i>
-      <p>Highly rated Adventures</p>
+      <i  class="fas fa-bullseye fa-3x" style="display:block; color: rgb(7, 139, 133);"></i>
+      <p  class="faparagraphs">Popular Adventures</p>
     </div>
     <div class="col-sm">
-      <i class="far fa-heart fa-3x" ></i>
-      <p>Highly rated Adventures</p>
+      <i class="far fa-heart fa-3x" style= "display:block; color: rgb(7, 139, 133);" ></i>
+      <p  class="faparagraphs">Highly recommended</p>
     </div>
   </div>
 
@@ -178,15 +181,16 @@
      <h3>Swim with a Whale</h3>
       <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
     </div>
-    <div class="col-sm cruise-image">
-      <!-- <img src="images/snorkeling1.jpg" alt="djibwhale">  -->
+    <div class="col-sm ">
+     <img class="img-fluid snorkeling " style="width:100%"; src="images/snorkeling1.jpg" alt="snorkeling">
     </div> 
        
   </div>
   <div class="row">
     
-    <div class="col-sm snorking-image">
-      <!-- <img src="images/boat.jpg" alt="djibwhale">  -->
+    <div class="col-sm">
+     <img class="img-fluid boat" style="width:100%"; src="images/boat.jpg" alt="boat">
+      
     </div> 
     <div class="col-sm whaletext" >
       <h2>Lac Abee </h2>
