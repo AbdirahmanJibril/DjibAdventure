@@ -1,0 +1,25 @@
+<%- include('partials/header'); -%>
+
+
+  
+<form action="/reset/<%=token%>" method="POST">
+    <h2>reset</h2>
+   
+  
+    <div class="container">
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="password" value="" name="password" required>
+  
+              
+      <label for="confirmpassword"><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm Password" value="" name="confirmpassword" required>
+  
+      <button type="submit">Reset</button>
+      
+    </div>
+    
+  </form>
+
+
+
+<%- include('partials/footer'); -%>

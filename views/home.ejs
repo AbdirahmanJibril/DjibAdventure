@@ -40,8 +40,7 @@
              </div>
            </li>
            
-           
-      
+         
               <%if (user){%>
                
 
@@ -72,15 +71,13 @@
                <li class="nav-item">
              <a class="nav-link" href="/Login"><span class="LogReg"> Login</i></span></a>
             </li> 
-
+           
             <%}%>   
          </ul>
          
        </div>
      </nav>
-     <% if (message) { %>
-      <p><%= message%></p>
-      <% } %>
+   
     <div class="weather-div">
       <p>Djibouti <%=dateandtime%>, </p>
       <p><i class="fas fa-temperature-high"></i></p>
@@ -89,7 +86,15 @@
      
       <p><img class="icon"  src="<%=weatherIcon%>" alt=""></p>
       </div>
-
+      <% if (message) { %>
+        <p><%= message%></p>
+        <% } %>
+        <div class="success">
+          <%if (success){%>
+           <p><%= success%></p>
+           
+          <%}%>
+    
       <div class="jumbotron">
         <h1 class="display-4">EXPLORE DJIBOUTI</h1>
         <p class="lead">Top 10 recomended visit countries in the world</p>
@@ -182,14 +187,14 @@
       <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
     </div>
     <div class="col-sm ">
-     <img class="img-fluid snorkeling " style="width:100%"; src="images/snorkeling1.jpg" alt="snorkeling">
+     <img class="img-fluid snorkeling " style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604855987/snorkeling1_e91z6u.jpg" alt="snorkeling">
     </div> 
        
   </div>
   <div class="row">
     
     <div class="col-sm">
-     <img class="img-fluid boat" style="width:100%"; src="images/boat.jpg" alt="boat">
+     <img class="img-fluid boat" style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604856020/boat_illnvv.jpg" alt="boat">
       
     </div> 
     <div class="col-sm whaletext" >

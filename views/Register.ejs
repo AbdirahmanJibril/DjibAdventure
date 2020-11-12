@@ -14,14 +14,10 @@
         
         <form action="/Register" method="post">
           <h2>Sing UP</h2>
-          <div class="error"> 
-             <% if (message) { %>
-            <p><%= message %></p>
-            <% } %>
-          </div>
-          
 
-          
+          <%if (message){%>
+            <%(message)%>
+          <%}%>
           
         
           <div class="container">
@@ -34,6 +30,9 @@
             
             <label for="username"><b>Email Adress</b></label> 
             <input type="text" placeholder="Name" name="username" required>
+
+            <label for="email"><b>confirm email</b></label> 
+            <input type="text" placeholder="email" name="email" required>
                                            
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>

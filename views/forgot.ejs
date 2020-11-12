@@ -1,13 +1,21 @@
 <%- include('partials/header'); -%>
-
-
+<div class="error">
+  <%if (error){%>
+   <p><%= error%></p>
+   
+  <%}%>
+</div>
+<div class="info">
+<% if (info){%>
+  <p><%= info%></p>
+<%}%>
+</div>
 
 <form action="/forgot" method="POST">
     <h2>Reset Password</h2>
-   
-  
+    
     <div class="container">
-      <label for="name"><b>Name</b></label>
+      <label for="email"><b>Name</b></label>
       <input type="text" placeholder="email" name="email" required>
      
   
@@ -16,19 +24,6 @@
     </div>
   
   </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
