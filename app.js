@@ -265,15 +265,19 @@ app.post('/reset/:token', function(req, res) {
           return res.redirect('back');
         }
 
-        user.password = req.body.password;
-        user.resetPasswordToken = undefined;
-        user.resetPasswordExpires = undefined;
-
-        user.save(function(err) {
-          req.logIn(user, function(err) {
-            done(err, user);
+        user.setPassword (req.body.password, function(err){
+          
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+          
+          user.save(function(err) {
+            req.logIn(user, function(err) {
+              done(err, user);
+            });
           });
+       
         });
+             
       });
     },
     function(user, done) {
