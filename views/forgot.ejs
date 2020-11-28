@@ -1,4 +1,49 @@
-<%- include('partials/header'); -%>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Djib Holidays</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6b43684e60.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+
+<body>
+ <nav class="navbar navbar-expand-lg fixed-top ">
+   <a class="navbar-brand" href="#">DjibAdventures</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarNavDropdown">
+     <ul class="navbar-nav">
+     
+       <%if(user){%>  
+       
+       <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <i class="fas fa-user-circle fa-lg"></i>
+         </a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+           <a class="dropdown-item" href="/userspage">My Page</a>
+           <a class="dropdown-item" href="/">Cancel password reset</a>
+           <a class="dropdown-item" href="/logout">Logout</a>
+         </div>
+       </li>
+       <%} else {%>
+         
+       <li class="nav-item active">
+         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+       </li>
+      
+       <%}%>
+     </ul>
+   </div>
+ </nav>
 <div class="error">
   <%if (error){%>
    <p><%= error%></p>
@@ -7,7 +52,7 @@
 </div>
 <div class="info">
 <% if (info){%>
-  <p><%= info%></p>
+  <p style="background-color: #05af1c; font-size: medium;  color: rgb(255, 255, 255);" ><%= info%></p>
 <%}%>
 </div>
 
@@ -25,9 +70,19 @@
   
   </form>
 
+  <div class="footer">
+
+    <div class="container">
+        <div class="row">
+          <div class="col">
+           <p>DjibHoliday</p>
+           <p><i class="fas fa-globe"></i>  www.djibholiday.com</p>
+           <p><i class="fas fa-phone"></i>  7788525200</p>
+           <p><i class="fas fa-envelope-open-text"></i>  info@djibholiday.com</p>
+          </div>
+         
+      </div>
 
 
 
 
-
-<%- include('partials/footer'); -%>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -9,58 +10,63 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6b43684e60.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/styles.css">
+    
 
   </head>
 
 <body>
-  
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="#">DjibAdventures</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+    <%if(!user){%>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Adventures
-          </a>
-          <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-           <div class="dropdown-divide">
-            <a class="dropdown-item" href="#">Arta</a>
-            <a class="dropdown-item" href="#">Ali Sabieh</a>
-            <a class="dropdown-item" href="#">Dikhil</a>
-            <a class="dropdown-item" href="#">Djibouti</a>
-            <a class="dropdown-item" href="#">Tadjourah</a>
-          </div>
-          </div>
+        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+          <div class="dropdown-divide">
+           <a class="dropdown-item" href="#">Arta</a>
+           <a class="dropdown-item" href="#">Ali Sabieh</a>
+           <a class="dropdown-item" href="#">Day Mountain</a>
+           <a class="dropdown-item" href="#">Dikhil</a>
+           <a class="dropdown-item" href="#">Djibouti City</a>
+           <a class="dropdown-item" href="#">Tadjourah</a>
+         </div>
+         </div>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/Register">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/home" tabindex="-1" aria-disabled="true">Home</a>
+          <a class="nav-link" href="/Login">Login</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Contact">Contact</a>
+        </li>
+    
+        <%}else{%>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/Contact" tabindex="-1" aria-disabled="true">Contanct us</a>
-        </li>
-
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/Register"><span class="LogReg">Join Us</span></a>
-         </li>
-             
-        <li class="nav-item">
-          <a class="nav-link" href="/Login"><span class="LogReg">Login</span></a>
-         </li> 
-            
+          <div class="dropdown dropleft ml-auto">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+              <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/">Home</a>
+              <a class="dropdown-item" href="/userspage">My Page</a>
+              <a class="dropdown-item" href="/Logout">Logout</a>
+              <a class="dropdown-item" href="/forgot">ResetPassword</a>
+            </div>
+          </div>
+          
+        
+        <%}%>
+      </div>
       </ul>
-      
-    </div>
+          
   </nav>
 
+
+
+   
   

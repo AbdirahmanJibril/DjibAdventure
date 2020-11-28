@@ -11,10 +11,14 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const nodemailer = require("nodemailer");
 const async = require('async');
 const crypto = require('crypto');
-const flash= require("express-flash");  
-const weather = require("./weather.js");
+const flash= require("express-flash"); 
+
+
+
+
 // const { match } = require('assert');
 const cloudinary = require('cloudinary').v2;
+
 
 
 
@@ -25,8 +29,13 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
 
-moment.locale("fr");
-var djibLocal = moment().format("LL");
+const date = new Date();
+
+const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+
+const bookingDate=date.toLocaleDateString("ar-EG", dateOptions);
+
+var djibLocal =bookingDate;
 
 app.use(session({
   secret: process.env.APP_SECRET,
@@ -43,11 +52,14 @@ app.use(passport.session());
 
 
 mongoose.connect('mongodb://localhost:27017/UserData', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.set('useCreateIndex', true)
+
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 
 const tripSchema = new mongoose.Schema({
   Trip:String,
-  Date:Date,
+  Date:String,
   person:Number
   
 });
@@ -57,7 +69,6 @@ const  Trip = mongoose.model("Trip",tripSchema);
 const userSchema = new mongoose.Schema({
   firstName:String,
   lastName:String,
-  username:String,
   password:String,
   email:String,
   resetPasswordToken: String,
@@ -79,7 +90,7 @@ const userSchema = new mongoose.Schema({
   }
 };
 
-userSchema.plugin(passportLocalMongoose,options);
+userSchema.plugin(passportLocalMongoose,{ usernameField : 'email',  IncorrectUsernameError: 'Password or username are incorrect' });
 
 const User = mongoose.model('User', userSchema);
 
@@ -88,10 +99,7 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
 app.get("/", function(req,res){
-
 
   
 const url = "https://api.openweathermap.org/data/2.5/weather?q=Djibouti&appid=" + process.env.API_KEY + "&units=metric";
@@ -130,15 +138,17 @@ app.get("/home", function(req,res){
 });
 
 
+
 app.get("/userspage", function(req,res){
-  
+ 
+ 
    if (req.isAuthenticated()){
      
-    User.findById(req.user._id, function(err, foundUser){
+    User.findById({_id:req.user._id}, function(err, foundUser){
       if (err){
         console.log(err);
       }else{
-      res.render("userspage", {user:foundUser.firstName,  Booking:foundUser, message:req.flash("message") });
+      res.render("userspage", {user:foundUser.firstName, id:foundUser._id,  Booking:foundUser,  message:req.flash("message") });
       }
      });
     
@@ -148,7 +158,7 @@ app.get("/userspage", function(req,res){
    });
   
   app.post("/userspage", function(req, res){
-          
+ 
      const trip =  new Trip({
        Trip:req.body.destination,
         Date:req.body.adventureDate,
@@ -156,14 +166,17 @@ app.get("/userspage", function(req,res){
        });   
        trip.save();
      
+       
+        
      User.findById({_id:req.user._id},  function(err, foundUser){
+      
        if(err){
          console.log(err);
        }else{
         foundUser.Adventure.push(trip);
         foundUser.save();
        }
-       req.flash('message', 'You have successfully Booked!');
+       req.flash('message', 'You have successfully Booked', req.body.destination);
        res.redirect("/userspage");
        });
      });     
@@ -174,8 +187,46 @@ app.get("/userspage", function(req,res){
    
  });
  
+ app.post("/delete", function(req, res){
+const id=req.body.toDelete;
+const userId=req.user._id;
+
+User.findOneAndUpdate({_id:userId}, {$pull:{Adventure:{_id:id}}},
+  {new:true},
+  function(err, updateAdventure){
+  if (!err){
+   
+   req.flash("message", "You have Successfully Cancelled your Adventure")
+   res.redirect("/userspage")
+
+  }else{
+    console.log("not found");
+    res.redirect("/userspage")
+  }
+  
+});
+   
+});
+  
+app.get("/update/:id", function(req,res){
+  const toUpdate= req.params.id;
+
+  console.log(toUpdate);
+});
+app.post("/update/:id",function(req,res){
+  console.log(req.params.id);
+});
+
+  
+ 
+
+ 
+
+ 
     app.get("/Login", function(req,res) {
-     res.render("Login", {user:req.user});
+     res.render("Login", {user:req.user, error:req.flash("error")});
+     
+     
    });
 
  app.get('/logout', function(req, res){
@@ -183,6 +234,76 @@ app.get("/userspage", function(req,res){
   req.flash("loggedout", "you have successfully logged out");
   res.redirect("/");
 });
+
+
+app.post("/Register", function (req,res) {
+  
+  const newUser = new User({
+    firstName:req.body.firstName,
+    lastName:req.body.lastName,
+    email:req.body.email,
+    confirm:req.body.confirm
+    
+  });
+
+  if(req.body.password===req.body.confirm){
+
+    User.register(newUser, req.body.password, function(err, user) {
+   
+      if (err) { 
+        
+          res.redirect("/Register");
+      }
+       
+            passport.authenticate("local")(req,res, function(){
+             req.flash("message", "Welcome you have successfully registered");
+              res.redirect("/userspage");
+            });
+          
+               
+      });
+    } else {
+      req.flash("message", "Passwords dont match!")
+      res.redirect("/Register");
+     ;
+      
+     }
+    });
+
+app.post("/Login",function (req,res) {
+
+    
+  const user  = new User({
+     email: req.body.email,
+    password: req.body.password
+       
+  });
+   
+  User.findOne({email:req.body.email}, function(err, user){
+      if(user){
+        req.login(user,function(err){
+          if(err){
+              console.log(err);    
+           } 
+           passport.authenticate("local")(req,res,function(){
+            //  User.findById(req.user._id,function(err,foundUser){
+                                               
+            res.redirect("/userspage");
+                            
+            //  });
+            }); 
+          });
+      
+      }else{
+       req.flash("error", "Incorrect login details");
+       res.redirect("/Login");
+      }
+  });
+ 
+     
+});
+
+
 
 app.get('/forgot', function(req, res) {
   res.render('forgot', {
@@ -304,65 +425,6 @@ app.post('/reset/:token', function(req, res) {
     res.redirect('/');
   });
 });
-app.post("/Register", function (req,res) {
-  
-  const newUser = new User({
-    firstName:req.body.firstName,
-    lastName:req.body.lastName,
-    email:req.body.email,
-    username: req.body.username,
-    confirmpassowrd:req.body.confirmpassword
-    
-  });
-
-  User.register(newUser, req.body.password, function(err, user) {
-   
-    if (err) { 
-      console.log(err);
-        res.redirect("/Register");
-     }
-     else {
-         if(req.body.password===req.body.confirmpassword) {
-          passport.authenticate("local")(req,res, function(){
-           req.flash("message", "Welcome you have successfully registered");
-            res.redirect("/userspage");
-          });
-         }else{
-          req.flash("message", "Passwords dont match!");
-          res.redirect("/Register");
-         }
-              
-      }      
-       
-      });
-      
-    });
-app.post("/Login",function (req,res) {
-  
-  const user  = new User({
-    
-    username: req.body.username,
-    password: req.body.password
-    
-    
-  });
-   
-  req.login(user,function(err){
-     if(err){
-      console.log(err);
-    }else{
-       passport.authenticate("local")(req,res,function(){
-        User.findById(req.user._id,function(err,foundUser){
-          
-          res.redirect("/userspage");
-        });
-      
-      });
-    }
-  });
-  
-});
-
 app.listen(port,function(){
   console.log("server is up and running");
 });

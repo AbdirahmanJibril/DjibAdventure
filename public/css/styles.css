@@ -20,6 +20,11 @@ body{
 h1.display-4{
   color:white;
 }
+.h2Login{
+color:#18afb7;
+font-weight: 900;
+font-size: 1.5rem;
+}
 
 .error {
   
@@ -28,7 +33,7 @@ h1.display-4{
 }
 .info{
 
-  color:green
+  color:green;
   font-size: 1.2rem;
 
 }
@@ -73,11 +78,11 @@ display: inline-block;
 .weather-div{
   color:#1C86B0;
   text-align: center;
-  
+  margin-top:0;
 }
 
 .weather-div p{
-    color: #448D76;
+  color: #448D76;
   margin: 1px 2px auto 2px;
   font-weight: bolder;
   font-size: 0.9rem;
@@ -91,27 +96,87 @@ display: inline-block;
     border: 0x;
     border-radius: 0;
     margin-bottom: 0;
-    margin-right: 50px;
     font-size: 14px;
     letter-spacing: 5px;
     background-color: #cbf1f5;
     
 }
-.navbar-nav.nav-item{
- 
-  font-weight: 500;
+.navbar-brand{
+  color:#18afb7;
+  font-weight: bolder;
+}
+.navbar-brand a:hover{
+  color:#18afb7;
+  
+}
+.navbar-nav .nav-item{
+   font-weight: 500;
+   margin-right: 5px;
 }
 .nav-item a:hover {
     background-color:#65b9d2;
     color: white;
 }
+.nav-link{
+  color:#18afb7;
+  font-weight: bolder;
 
-.dropdown-menu{
-  background-color: #93c3c7;
-  margin-right: 50px;
 }
 
 
+
+.dropdown-menu{
+  background-color: #93c3c7;
+}
+/*************************************Forms and inputs stylings*****************************************/
+ .regform{
+  position: absolute;
+  margin: 0;
+  padding: 10px;
+  left:500px;
+  border: 1px solid #3cb1bc;
+  background-color: #a6e3e9;
+  color: white;
+  font-weight: bolder;
+ } 
+ .btnReg{
+  background-color: #5ec0c8;
+  color: whitesmoke;
+ } 
+
+.form-inline{
+  position: absolute;
+  bottom: 80px;
+  left:300px;
+ }
+.form-group.col-sm{
+width:30%;
+}
+
+.form-group.bookingform{
+
+ margin:10px;
+ width: 200px;
+} 
+
+
+.input{
+  background-color:#5ec0c8 ;
+  border: none;
+}
+.input-group-text{
+  background-color:#5ec0c8 ;
+}
+.farForm{
+
+  display: inline;
+  background-color:#5ec0c8;
+} 
+/******************************************************************************************************************/
+span{
+  text-align: left;
+ font-weight: bold;
+}
 
 .card-deck{
  margin:3%;
@@ -122,16 +187,17 @@ display: inline-block;
   font-weight: bolder;
 
  }
-.list-group-item{
- padding-left: 10px;
- text-align: left;
- font-size: 1.2rem;
+.list-group{
+  display: inline-flex;
+  max-width: 400px;
  font-weight: 400;
-  background-color:#e3fdfd;
+ background-color:#e3fdfd;
+ text-align: left;
  
 }
 .list-group-item>p{
-  font-size: .95rem;
+ margin-left: 10px;
+
 }
 .card-body > P{
   padding-left: 10px;
@@ -151,7 +217,14 @@ display: inline-block;
   object-fit: cover;
   
 }
+.card.booking{
+  display: inline-flex;
+  margin: 1px;
+} 
 
+/* .carousel-inner .userspage{
+  height: 50%;
+} */
 
 .container-fluid.cards-section{
   margin-bottom: 50px;
@@ -184,12 +257,6 @@ display: inline-block;
   }
 
 
-.form-group{
-  width: 50%;
- 
-  
-}
-
 .container-fluid.signs{
   margin: 100px auto;
 }
@@ -216,15 +283,31 @@ display: inline-block;
     color: #fff;
   }
 
+  /* @media screen and (max-width: 600px){
+    .card-deck .card-body{
+      width: 100%;
+    }
+  } */
 
-  @media screen and (max-width: 992px) {
-    /* .weather-div{
+  @media screen and (max-width: 600px) {
+    .weather-div{
     display: none;
     }
     .time-div{
       display: none;
-    } */
-    .card{
-      max-width: 100%;
     }
+    .img-fluid.boat, .img-fluid.snorkeling {
+    margin: 5px 0;
   }
+
+  .list-group{
+    max-width: 100%;
+  }
+ .form-inline{
+ width:30%;
+
+  }
+.form-control{
+display: inline;
+margin: 0;
+}

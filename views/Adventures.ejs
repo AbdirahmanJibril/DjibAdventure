@@ -1,0 +1,29 @@
+<%- include('partials/header'); -%>
+
+
+  <h1>Welcome <%=user%></h1>
+<h1>Choose your Adventure</h1>
+
+<% if (message) { %>
+  <p style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= message%></p>
+  <% } %>
+  
+
+
+<%Booking.Adventure.forEach(function(foundAdventure){%>
+ 
+    
+<div class="card" style="width: 18rem;">
+   <div class="card-body">
+    
+      <h5 class="card-title"><%=foundAdventure.Trip%></h5>
+      <p class="card-text"><%=foundAdventure.Date%></p>
+      <p class="card-text"><%=foundAdventure.person%></p>
+     
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<%});%>
+
+
+<%- include('partials/footer'); -%>

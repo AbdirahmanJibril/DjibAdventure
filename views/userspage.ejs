@@ -1,134 +1,61 @@
-
-<html lang="en" dir="ltr">
-   
-  <head>
-    <meta charset="utf-8">
-    <title>Djib Holidays</title>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-      <script src="https://kit.fontawesome.com/6b43684e60.js" crossorigin="anonymous"></script>
-      <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="css/styles.css">
-  
-    </head>
-    
-  <body>
-    
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          
-         
-          <li class="nav-item dropdown drop-left">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Adventures
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <div class="dropdown-divide">
-              <a class="dropdown-item" href="#">Arta</a>
-              <a class="dropdown-item" href="#">Ali Sabieh</a>
-              <a class="dropdown-item" href="#">Dikhil</a>
-              <a class="dropdown-item" href="#">Djibouti</a>
-              <a class="dropdown-item" href="#">Tadjourah</a>
-            </div>
-            </div>
-          </li>
-         
-         
-             <%if (user){%>
-              
-                <li class="nav-item dropdown  drop-right">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-2x"></i>
-                  </a>
-                 <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                  <div class="dropdown-divide">
-                    <a class="nav-link" href="/Logout"><span class="LogReg">Logout</span></a>
-                   <a class="dropdown-item" href="/userspage">My Page</a>
-                   <a class="dropdown-item" href="#">Profile</a>
-                   <a class="dropdown-item" href="/forgot">Password-Reset</a>
-                  </div>
-                  </div>
-                  </li>
-
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/Contact" >Contact</a>
-                  </li>
-              <%}else {%>
-                    
-           <li class="nav-item">
-           
-            <a class="nav-link" href="/Login"><span class="LogReg">Login</span></a>
-           </li> 
-           <li class="nav-item">
-            <a class="nav-link" href="/Contact" >Contact</a>
-          </li>
-            <%}%>  
-        </ul>
-        
-      </div>
-    </nav>
-
-  <h1>Welcome <%=user%></h1>
-<h1>Choose your Adventure</h1>
-
-<% if (message) { %>
-  <p><%= message%></p>
-  <% } %>
-  
-<form action="/userspage" method="post">
-
-<label for="destination">Choose your Adventure destination:</label>
-<input list="destination" name="destination" id="dastination">
-
-<datalist id="destination">
-  <option value="Lac Asal" id="lacasal">
- <option value="Ambado" id="ambado">
-  <option value="Whale Shark Tour" id="whale">
-  <option value="Day Mountion" id="day">
-  <option value="Djibouti City" id="city">
-</datalist>>
+<%- include('partials/header'); -%>
 
 
-<label for="adventureDate"><b>Date</b></label> 
-<input type="date" placeholder="pick your adventure date" name="adventureDate" required>
+<h1 class="h2Login">Welcome <%=user%></h1>
 
-
-<label for="poeple"><b>Number of People </b></label>
-<input type="number" placeholder="enter number of persons" name="poeple" required>
-                
-
-<button type="submit">submit enquiry</button>
-
-</div>
-
-</form>
-<%Booking.Adventure.forEach(function(foundAdventure){%>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    
-      <h5 class="card-title"><%=foundAdventure.Trip%></h5>
-      <p class="card-text"><%=foundAdventure.Date%></p>
-      <p class="card-text"><%=foundAdventure.person%></p>
-     
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Start experiencing Membership  benefit</h1>
+    <p class="lead">Book your adventure with Member discount</p>
   </div>
+
+
+    <form class="form-inline" action="/userspage" method="POST">
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <input type="date" class="form-control mb-2 mr-sm-2" name="adventureDate" id="adventureDate" placeholder="Date">
+     
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" name="poeple"  id="poeple" placeholder="Number Persons">
+     
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <select class="custom-select  mb-2 mr-sm-2" name="destination" id="destination" placeholder="Choose Adventure">
+      <option>Choose...</option>
+      <option>Ambado</option>
+      <option>Djibouti City</option>
+      <option>Day</option>
+      <option>Lac Assal</option>
+      <option>Whale Tour</option>
+    </select>
+  
+      <button type="submit" class="btn btn-info mb-2">Book</button>
+    </form>
+ 
 </div>
-<%});%>
+</div>
+<% if (message) { %>
+  <p style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= message%></p>
+  <% } %>
+ 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+   
+    <%Booking.Adventure.forEach(function(foundAdventure){%>
+        <form action="/delete" method="POST">
+          <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+           Adventure Bookings
+          </a>
+          <a href="#" class="list-group-item list-group-item-action"><span class="listgroup">Adventure:</span><%=foundAdventure.Trip%></a>
+          <a href="#" class="list-group-item list-group-item-action"><span class="listgroup">Date:</span><%=foundAdventure.Date%></a>
+          <a href="#" class="list-group-item list-group-item-action"><span class="listgroup">Persons:</span><%=foundAdventure.person%></a>
+          <button type="submit" name="toDelete"  value="<%=foundAdventure._id%>"  class="btn  btn-info mb-2">Cancel</button>
+          
+         </div>
+    
+         </form>
+         <%});%>
 
-</body>
+
+
+
+<%- include('partials/footer'); -%>
