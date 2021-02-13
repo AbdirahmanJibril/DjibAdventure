@@ -1,0 +1,53 @@
+<%- include('partials/header'); -%>
+
+
+<div class="row justify-content-around">
+    <div class="col-md-3 ">
+     <h2>Create new post</h2>
+     <div class="form-group">
+    <form  action="/submitBlog" method="POST" enctype="multipart/form-data">
+
+    <input class="form-control" type="text" name="title" placeholder="Title">
+    <input  class="form-control" type="text" name="place" placeholder="Place">
+    <input class="form-control" type="text" name="description" placeholder="Description">
+    <input  class="form-control-file"   type="file" accept="images/*" name="images" multiple />
+    <button type="submit" class="btn btn-info">Submit</button>
+    
+    </form>
+    </div>
+    </div>
+        <!-- uploaded Post & pictures -->
+    <div class="col-md-8 border border-info">
+
+<div class="row">
+
+  
+
+    <%foundPost.forEach((Post)=>{%> 
+        <div class="col-sm-4">
+            <form>   
+    <div class="card" style=" margin-top: 5xp; margin-bottom: 5px;">
+        <div class="card-body">
+            <h5 class="card-title">Trip: <%=Post.title%></h5>
+            <p class="card-text">Adventure: <%=Post.place%></p> 
+            <p class="card-text">Comments:<%=Post.description%></p>
+            <%Post.images.forEach((image)=>{%>   
+                <img src="<%=image.path%>" alt="myAdventure" width="50px"/>
+                <%});%>
+            <a  href= "/postUpdate/<%=Post._id%>/update">Update Post</a>  
+        </div>
+        </div>
+
+</div>           
+<%});%>
+
+</form> 
+</div>
+</div>
+   
+</div>
+
+
+
+
+  <%- include('partials/footer'); -%>

@@ -1,59 +1,88 @@
 <%- include('partials/header'); -%>
+
+  
+         
+    <%if (message){%>
+      
+    <h2 style=" color: rgb(247, 13, 13);"> <%=message%></h2>
+   <%}%>
+   
+    <%if (error){%>
+      <h2 style=" color: rgb(247, 13, 13);"> <%=error%></h2>
+   <%}%>
+   
+
+   
+   
+   <fieldset class="regform">
+          <h2 class="h2Login">Sing UP</h2>
+      <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+        <i class="fa fa-google"></i> Sign up with Google
+      </a>
+      <a class="btn btn-block btn-social btn-facebook" href="#" role="butoon">
+        <i class="fa fa-facebook-f"></i> sign with Facebook
+      </a>
+      <p class=" btn-paragraphs">Or sign up manually </p>
+
+      <form action="/Register" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"> <i class="fas fa-user-circle fa-lg"></i></div>
+        <input type="text" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="emailHelp"  required="required">
+          <p id="err"></p>
+      </div>
+      </div>
+  
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="far fa-user-circle fa-lg"></i></div>
+        
+        <input  type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" aria-describedby="emailHelp"  required="required">
+      </div>
+      </div>
+      <div class="form-group">
+
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="far fa-user-circle fa-lg"></i></div>
+      
+      <input  type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" aria-describedby="emailHelp"  required="required">
+    </div>
+    </div>
+       
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
+      
+      <input type="password" class="form-control" name="password"  placeholder="Password" aria-describedby="emailHelp">
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
+      
+      <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" aria-describedby="emailHelp">
+    </div>
+  </div>
+
+   
+  <div class="form-group ">
+    <label for="image">Upload profile image</label>
+    <input type="file" name="image" class="form-control" id="image" >
+  </div>
+    <button  type="submit" class="btnReg btn-lg btn-info fa-lg" >Submit</button>
+    <a href="/" class="btn btn-info">Cancel</a>
+  </form>
+   </fieldset>
+  
+
+  
+
         
    
         
           
-          <form action="/Register" method="Post">
-         
-            <%if (message){%>
-            <p style="background-color: #d68e8e; font-size: medium;  color: rgb(247, 13, 13);"> <%=(message)%></p>
-           <%}%>
-               
         
-           <fieldset class="regform">
-            <h2 class="h2Login">Sing UP</h2>
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="far fa-user-circle fa-lg"></i></div>
-              
-              <input  type="text" class="form-control" name="firstName" id="firsName" placeholder="First Name" aria-describedby="emailHelp">
-            </div>
-            </div>
-  
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="far fa-user-circle fa-lg"></i></div>
-              
-              <input  type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" aria-describedby="emailHelp">
-            </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="fas fa-envelope fa-lg"></i></div>
-              
-              <input type="text" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="emailHelp">
-            </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
-              
-              <input type="password" class="form-control" name="password" id="email" placeholder="Password" aria-describedby="emailHelp">
-            </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
-              
-              <input type="password" class="form-control" name="confirm" id="email" placeholder="Confirm Password" aria-describedby="emailHelp">
-            </div>
-          </div>
-           
-            <button  type="submit" class="btnReg btn-lg btn-info fa-lg" >Submit</button>
-           </fieldset>
-          
-        </form>
     
         
 

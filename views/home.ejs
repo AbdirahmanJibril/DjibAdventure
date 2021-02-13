@@ -1,9 +1,11 @@
 <%- include('partials/header'); -%>
   
    
-     
+    
+
+   
     <div class="weather-div">
-      <p>Djibouti, <%=dateandtime%>, </p>
+      <p>Djibouti <%=dateandtime%>  </p>
       <p><i class="fas fa-temperature-high"></i></p>
       <p><%=Temperature%>C</p>
       <p><%=WeatherDescription%></p>
@@ -12,22 +14,51 @@
       </div>
 
       <% if (message) { %>
-        <p style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= message%></p>
+    <div class="message">
+        <h2 style="background-color: #7FFFD4; font-size: large;  color: white;"><%= message%></h2>
         <% } %>
+      </div>
         <div class="success">
           <%if (success){%>
-           <p style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= success%></p>
+          
+           <h2 style="background-color: #079b6a; font-size: large;  color: white;"><%= success%></h2>
            
           <%}%>
-    
+            
+         
       <div class="jumbotron">
-        <h1 class="display-4">EXPLORE DJIBOUTI</h1>
-        <p class="lead">Top 10 recomended visit countries in the world</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </div>
+        <div class="row">
+          <div class="col-6 jumboText" >
+            <h1  class="display-4">EXPLORE DJIBOUTI</h1>
+ 
+            <p class="lead">Top 10 recomended visit countries in the world</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          </div>
+        
+          <div class="col-7">
+<!--         
+              <img class="topImage" src="/images/b.jpg" alt="boat"> -->
+            <!-- <svg class="svg-top" viewBox="10 60 250 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <clipPath id="user-space" clipPathUnits="userSpaceOnUse">
+                 
+                    <path class="blob1" fill="#FF0066" d="M37,-52.7C49.3,-49.7,61.5,-41.7,63.7,-30.9C65.9,-20,58.1,-6.4,57.7,9.5C57.3,25.4,64.3,43.6,60.1,56.4C55.8,69.2,40.2,76.5,23.9,81.3C7.6,86,-9.5,88.2,-25.3,84.4C-41.2,80.6,-55.8,70.8,-66.1,57.9C-76.4,44.9,-82.3,28.8,-83.1,12.9C-83.9,-3,-79.5,-18.7,-73.7,-34.7C-68,-50.7,-60.8,-67,-48.2,-69.9C-35.7,-72.8,-17.9,-62.2,-2.7,-57.9C12.4,-53.6,24.8,-55.7,37,-52.7Z" transform="translate(100 100)" />
+
+                </clipPath>
+              </defs>
+                <image class="imag-svg" width="100%" height="100%" preserveAspectRatio="xMinYMin slice" xlink:href="/images/beach.jpg" clip-path="url(#user-space)"/>
+            </svg> -->
+         
+          </div>
+         
+          </div>
+        </div>
+       
+
       
+ 
     
    <!-- --------------------------------------Crds section--------------------------------- -->
      
@@ -35,7 +66,7 @@
       <div class="card">
         <img src="/images/il-moucha.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Moucha Island</h5>
+          <h5  class="card-title">Moucha Island</h5>
           <p class="card-text">The most beautfull undersea wildlife can be found here, clean and clear the nature is here at display </p>
         </div>
         <ul class="list-group list-group-flush">
@@ -82,32 +113,14 @@
   </div>
 </div>
 </div>
-<div class=" constainer-fluid signs">
-  <div class="row">
-    <div class="col-sm">
-      <i class="fas fa-check fa-3x" style="display:block; color: rgb(7, 139, 133);"></i>
-      <p class="faparagraphs">Highly rated Adventures</p>
-    </div>
-    <div class="col-sm">
-      <i  class="fas fa-bullseye fa-3x" style="display:block; color: rgb(7, 139, 133);"></i>
-      <p  class="faparagraphs">Popular Adventures</p>
-    </div>
-    <div class="col-sm">
-      <i class="far fa-heart fa-3x" style= "display:block; color: rgb(7, 139, 133);" ></i>
-      <p  class="faparagraphs">Highly recommended</p>
-    </div>
-  </div>
-
-  <div> </div>
-  <div></i></div>
-  
+   
 
 </div>
 
 <div class="container-fluid whale-section">
   <div class="row">
     <div class="col-sm whaletext" >
-     <h2>Lac Abee </h2>
+     <h2 class="display-4">Lac Abee </h2>
      <h3>Swim with a Whale</h3>
       <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
     </div>
@@ -116,14 +129,14 @@
     </div> 
        
   </div>
-  <div class="row">
+  <div class="row ">
     
     <div class="col-sm">
      <img class="img-fluid boat" style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604856020/boat_illnvv.jpg" alt="boat">
       
     </div> 
     <div class="col-sm whaletext" >
-      <h2>Lac Abee </h2>
+      <h2 class="display-4">Lac Abee </h2>
       <h3>Swim with a Whale</h3>
        <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
      </div>
@@ -131,21 +144,62 @@
   </div>
   
   </div>
-  <div>
-    <div>
-      <h2></h2>
-      <i class="fas fa-hands"></i>
-      <i class="fas fa-umbrella-beach"></i>
-      <i class="fas fa-truck-monster"></i>
-      <i class="fas fa-route"></i>
-      <i class="fas fa-mountain"></i>
-      <i class="fas fa-hiking"></i>
-      <i class="fas fa-swimmer"></i>
-      <i class="fas fa-fish"></i>
+
+  
+<div class=" constainer-fluid signs">
+  <div class="row">
+    <div class="col-sm">
+      <i class="fas fa-check fa-3x" style="display:block; color: #65b9d2;"></i>
+      <p class="faparagraphs">Highly rated Adventures</p>
     </div>
+    <div class="col-sm">
+      <i  class="fas fa-bullseye fa-3x" style="display:block; color: #65b9d2;"></i>
+      <p  class="faparagraphs">Popular Adventures</p>
+    </div>
+    <div class="col-sm">
+      <i class="far fa-heart fa-3x" style= "display:block; color: #65b9d2;kkk" ></i>
+      <p  class="faparagraphs">Highly recommended</p>
+    </div>
+  </div>
+
+
+  <div id="testimonial" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+     
+      <div class="carousel-item active" data-interval="10000">
+        <h3 class="h3testimonial">Expetional Adventure</h3>
+        <p class="h3testimonial">This was the perfect Adventure ever made</p>
+        <img src="/images/testimonial1.jpg" class="testimonial" alt="...">
+        <p class="nametestimonial">Mark</p>
+        
+      </div>
+      <div class="carousel-item" data-interval="2000">
+        <h3 class="h3testimonial">Unforgettable and ejoyable</h3>
+        <p class="h3testimonial"> I will cenrtenly attempt once more in future</p>
+        <img src="/images/testimonial2.jpg" class="testimonial" alt="...">
+        <p class="nametestimonial">Jane</p>
+      
+        
+      </div>
+      <div class="carousel-item">
+          <h3 class="h3testimonial">Amazing</h3>
+        <p class="h3testimonial">Beyond my Expectatins</p>
+        <img src="/images/testimonial3.jpg" class="testimonial" alt="...">
+        <p class="nametestimonial">Andrew</p>
+      
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#testimonial" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#testimonial" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
   
 </div>
-
+</div>
 
 <%- include('partials/footer'); -%>

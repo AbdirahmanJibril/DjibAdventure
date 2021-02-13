@@ -1,0 +1,74 @@
+
+<%- include('partials/header'); -%>
+
+  <h1>Update Booking</h1>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%AdventurePlace.forEach((foundAdventure)=>{%>
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body" >
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text" style="text-align: center;">With supporting text below as a natural lead-in to additional content.</p>
+          
+              <p class="list-group-item" style="width: 50%;">Place:<%=foundAdventure.Trip%></p>
+              <p class="list-group-item " style="width: 50%;">Date:<%=foundAdventure.Date%></p>
+              <p class="list-group-item" style="width: 50%;">People:<%=foundAdventure.person%></p>
+           
+            <a href="/userspage" class="btn btn-primary">Cancel</a>
+          </div>
+        </div>
+        <%});%>
+    </div>
+    <div class="col">
+   <!--update form-->
+<h2>Select new Adventure</h2>
+<%AdventurePlace.forEach((foundAdventure)=>{%>
+<form class="form-inline mx-0" action="/update/<%=foundAdventure._id%>" method="POST">
+    <fieldset>
+    <input type="date" class="form-control mb-2 mr-sm-2" value=<%=foundAdventure.Date%> name="adventureDate" id="adventureDate" placeholder="Date"  required="required">
+   
+   
+    <input type="text" class="form-control mb-2 mr-sm-2" value=<%=foundAdventure.person%> name="poeple"  id="poeple" placeholder="Number Persons"   required="required">
+   
+
+  <select class="custom-select  mb-2 mr-sm-2" value=<%=foundAdventure.Trip%> name="destination" id="destination" placeholder="Choose Adventure"  required="required">
+    <option><%=foundAdventure.Trip%></option>
+    <option>Ambado</option>
+    <option>Djibouti City</option>
+    <option>Day</option>
+    <option>Lac Assal</option>
+    <option>Whale Tour</option>
+  </select>
+
+    <button type="submit" class="btn btn-info mb-2">Change</button>
+  </fieldset>
+  </form>
+  <%});%>
+    </div>
+  
+  </div>
+
+<div class="container">
+<div class="row">
+<div class="col-sm">
+
+  <%AdventurePlace.forEach((foundAdventure)=>{%>
+    <%=foundAdventure.Post%>
+    <%});%> 
+</div>
+
+</div>
+
+</div>
+
+
+<%- include('partials/footer'); -%>
+
+
+
+
+

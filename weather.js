@@ -1,10 +1,11 @@
 const https= require("https");
 var express = require('express');
 
+const weatherApp =  (data) => {
+console.log(data);
+const url=  "https://api.openweathermap.org/data/2.5/weather?q=Djibouti&appid=e835986abd7f4dba2391067cbad3b1cf&units=metric";
 
-const url = "https://api.openweathermap.org/data/2.5/weather?q=Djibouti&appid=e835986abd7f4dba2391067cbad3b1cf&units=metric";
-
- function weatherApp (req, res) {
+ 
   
   https.get(url, function(response){
     response.on("data", function(data){
@@ -20,10 +21,10 @@ const url = "https://api.openweathermap.org/data/2.5/weather?q=Djibouti&appid=e8
   
    });
   
-    return weatherApp;
 
+return url;
 
-}
+};
 
 
 

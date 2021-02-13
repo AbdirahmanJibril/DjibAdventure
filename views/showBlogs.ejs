@@ -1,0 +1,20 @@
+
+<h1>All Blogs</h1>
+
+    <%show.forEach((foundAdventure)=>{%>
+        <%foundAdventure.Post.forEach((foundPosts)=>{%>
+        
+         <div>
+            <p><h3>Title:<%=foundPosts.title%></h3></p>
+            <p>Place:<%=foundPosts.place%></p>
+            <p>Comments:<%=foundPosts.description%></p>
+            <%foundPosts.images.forEach((image)=>{%> 
+           <p> <img src="<%=image.path%>" alt="myAdventure" width="200px;"/>
+            </p>
+            </div>
+            <%});%>   
+            <%});%>  
+     <%});%>   
+  
+   
+

@@ -1,0 +1,65 @@
+
+
+    <%- include('partials/header'); -%>
+    <%if(error){%> <h2 style="color:red; background-color: lightpink;"><%=error%></h2><%}%>
+    <%if(success){%> <h2 style="color:white; background-color: lightgreen;"; ><%=success%></h2><%}%>
+ 
+
+
+    <div class="container">
+
+      <h1 class="h1profile" ><img class="profile-image" src="<%=image.path%>" alt= "profile-picture"><%=user.firstName%>'s Profile</h1>
+   <form  action="/updateProfile" method="POST" enctype="multipart/form-data">
+   <div class="form-row">
+   
+      <div class="form-group col-md-4 ">
+        <label for="email">Username</label>
+        <input type="email" name="email" class="form-control" id="email" value="<%=user.email%>">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" class="form-control" id="firstName" value="<%=user.firstName%>" >
+      </div>
+      <div class="form-group col-md-4 ">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" class="form-control" id="lastName" value="<%=user.lastName%>">
+      </div>
+  
+  </div>
+   <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="current-password">Current Password <small>(required to update profile)</small> </label>
+      <input type="password" class="form-control" id="current-password" name="currentPassword">
+    </div>
+    <div class="form-group col-md-4 ">
+      <label for="new-password">New Password</label>
+      <input type="password" name="newPassword" class="form-control" id="new-password">
+    </div>
+    <div class="form-group col-md-4 ">
+      <label for="password-confirmation">Confirm Password</label>
+      <input type="password" name="passwordConfirmation" class="form-control" id="password-confirmation">
+    </div>
+    <div id="validation-message"></div>
+   </div>
+     
+     
+   <div class="form-row">
+    <div class="form-group">
+      <label for="image">Update image  <small>(replaces existing image)</small></label>
+      <input type="file" name="image" class="form-control" id="image" >
+    </div>
+ <div class="form-group">
+  <button type="submit" class="btn btn-lg btn-info">Submit Update</button>
+ </div>
+ </div>
+   
+  </form>
+
+
+    </div>
+
+   
+<script src="/javascriptFiles/profile.js"></script>
+
+
+<%- include('partials/footer'); -%>

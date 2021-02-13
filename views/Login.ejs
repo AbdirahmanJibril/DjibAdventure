@@ -1,16 +1,24 @@
-<%- include('partials/header'); -%>
 
-<%if(error){%>
-  <p class="error"><%=error%></p>
- <%}%>
+<%- include('partials/header'); -%>
 
 
 
 <form action="/Login" method="Post">
+  <%if(error){%>
+    <p class="error"><%=error%></p>
+   <%}%>
   
-  
-  <fieldset class="regform">
-    <h2 class="h2Login">Login</h2>
+  <div class="regform" >
+    <h2 class="h2Login">Sign In</h2>
+    <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+      <span class="fa fa-google"></span> Sign in with Google
+    </a>
+    <a class="btn btn-block btn-social btn-facebook">
+      <span class="fa fa-facebook-f"></span> Sign in with Facebook
+    </a>
+    <p class=" btn-paragraphs">Or sign in manually </p>
+  <fieldset >
+   
   <div class="form-group">
     <div class="input-group-prepend">
       <div class="input-group-text"> <i class="fas fa-envelope fa-lg"></i></div>
@@ -28,11 +36,13 @@
   </div>
    
   <button  type="submit" class="btnReg btn-lg fa-lg"  >Submit</button>
- 
+  <a href="/" class="btn btn-info ">Cancel</a>
   </fieldset>
+ 
 </form>
-           
-
+  <a class="nav-link" href="/forgot">Forgottern Password</a>
+     
+</div>
 
 
 
