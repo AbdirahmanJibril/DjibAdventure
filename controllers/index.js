@@ -161,7 +161,11 @@ const postRoutBlogPost=  async (req,res)=>{
 
  
 }
-//---------------------------Adventure Booking Routes----------------------------
+//---------------------------Adventures & Booking Routes----------------------------
+
+const getMoucha = (req,res) =>{
+  res.render('Moucha', {user:req.user, fullYear})
+}
 // booking route
 const bookingRoute = (req,res)=> {
   
@@ -422,7 +426,9 @@ module.exports = {
     updateProfile,
     myBlogs,
     getDashboard,
-    changeApost
+    changeApost,
+    getMoucha
+ 
 
    
 

@@ -30,7 +30,8 @@ const {homeRoute,
        updateProfile,
        myBlogs,
        getDashboard,
-       changeApost
+       changeApost,
+       getMoucha,
        
       
      
@@ -86,13 +87,14 @@ router.get("/userspage", usersRoute);
    //cancel booking
   router.post("/delete", cancelBookingRoute);
    
-   //show all blogs
+  // show all blogs
   router.get('/show', function(req,res){
     res.render('show', {AdventurePlace:foundAdventure.Adventure, user:req.user, fullYear:fullYear});
   });
+//////////////////// BOOKING AND ADVENTURES ///////////////////////////////////////////////////
 
   //Adventure get-Update 
- 
+ router.get("/Moucha",  getMoucha);
  
 //Adventure Post-Update
 
@@ -146,7 +148,7 @@ router.post('/deletPost/:id', asyncErrorHandler(postDelete));
  
   // Login Get-Route
      router.get("/Login", function(req,res) {
-      res.render("Login", {user:req.user, error:req.flash("error")});
+      res.render("Login", {user:req.user, error:req.flash("error"), fullYear});
       
       
     });
@@ -158,41 +160,14 @@ router.post('/deletPost/:id', asyncErrorHandler(postDelete));
    res.redirect("/");
  });
  
- //Register Post-Route
- router.post("/Register",upload.single("image"),  postRegisterRoute );
- 
- router.post("/Login",function (req,res) {
-      
-  //  const user  = new User({
-  //     username: req.body.username,
-  //    password: req.body.password
-        
-  //  });
-    
-   User.findOne({email:req.body.email}, function(err, user){
-       if(user){
-         req.login(user,function(err){
-           if(err){
-               console.log(err);    
-            } 
-            passport.authenticate("local")(req,res,function(){
-             //  User.findById(req.user._id,function(err,foundUser){
-                                                
-             res.redirect("/dashboard");
-                             
-             //  });
-             }); 
-           });
-       
-       }else{
-        req.flash("error", "Incorrect login details");
-        res.redirect("/Login");
-       }
-   });
-  
-      
- });
 
+ router.post('/login',
+  passport.authenticate('local',  {successFlash: 'Welcome!' , successRedirect: '/dashboard' ,
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+                                  
+);
+ 
  //forgot Get-Route
  router.get('/forgot', function(req, res) {
   res.render('forgot', {

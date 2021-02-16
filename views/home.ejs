@@ -1,9 +1,20 @@
 <%- include('partials/header'); -%>
   
    
-    
-
-   
+<% if (message) { %>
+  <div class="message">
+      <h2 style="background-color: #7FFFD4; font-size: large;  color: white;"><%= message%></h2>
+      <% } %>
+    </div>
+      <div class="success">
+        <%if (success){%>
+        
+         <h2 style="background-color: #079b6a; font-size: large;  color: white;"><%= success%></h2>
+         
+        <%}%>
+      </div>
+<!-- ///////////////////////////////////////Weather API section//////////////////////////////////////// -->
+   <section class="weatherSection">
     <div class="weather-div">
       <p>Djibouti <%=dateandtime%>  </p>
       <p><i class="fas fa-temperature-high"></i></p>
@@ -12,21 +23,11 @@
      
       <p><img class="icon"  src="<%=weatherIcon%>" alt=""></p>
       </div>
-
-      <% if (message) { %>
-    <div class="message">
-        <h2 style="background-color: #7FFFD4; font-size: large;  color: white;"><%= message%></h2>
-        <% } %>
-      </div>
-        <div class="success">
-          <%if (success){%>
-          
-           <h2 style="background-color: #079b6a; font-size: large;  color: white;"><%= success%></h2>
-           
-          <%}%>
-            
-         
+   </section>
+  
+    <section class="carousel">
       <div class="jumbotron">
+      
         <div class="row">
           <div class="col-6 jumboText" >
             <h1  class="display-4">EXPLORE DJIBOUTI</h1>
@@ -34,7 +35,7 @@
             <p class="lead">Top 10 recomended visit countries in the world</p>
             <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a class="btn btn-info btn-jumbo " href="#" role="button">Learn more</a>
           </div>
         
           <div class="col-7">
@@ -55,10 +56,11 @@
          
           </div>
         </div>
-       
-
-      
+            
  
+    </section>        
+         
+     
     
    <!-- --------------------------------------Crds section--------------------------------- -->
      
@@ -70,14 +72,14 @@
           <p class="card-text">The most beautfull undersea wildlife can be found here, clean and clear the nature is here at display </p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="far fa-calendar-check fa-fw"></i>2 days</li>
-          <li class="list-group-item"><i class="fas fa-swimmer fa-fw"></i> Diving tours</li>
-          <li class="list-group-item"><i class="fas fa-umbrella-beach fa-fw"></i>Sun and See </li>
+          <li class="list-group-item card-deck-item"><i class="far fa-calendar-check fa-fw"></i>2 days</li>
+          <li class="list-group-item card-deck-item"><i class="fas fa-swimmer fa-fw"></i> Diving tours</li>
+          <li class="list-group-item card-deck-item"><i class="fas fa-umbrella-beach fa-fw"></i>Sun and See </li>
           
         </ul>
-        <div class="card-body">
-          <button type="button" class="btn btn-info">Enquiry</button>
-        </div>
+     
+          <a class="btn btn-info" href="/Moucha" role="button">View</a>
+       
       </div>
  
   <div class="card">
@@ -112,78 +114,89 @@
     </div>
   </div>
 </div>
-</div>
+
    
 
 </div>
 
-<div class="container-fluid whale-section">
-  <div class="row">
-    <div class="col-sm whaletext" >
-     <h2 class="display-4">Lac Abee </h2>
-     <h3>Swim with a Whale</h3>
-      <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
-    </div>
-    <div class="col-sm ">
-     <img class="img-fluid snorkeling " style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604855987/snorkeling1_e91z6u.jpg" alt="snorkeling">
-    </div> 
-       
-  </div>
-  <div class="row ">
-    
-    <div class="col-sm">
-     <img class="img-fluid boat" style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604856020/boat_illnvv.jpg" alt="boat">
-      
-    </div> 
-    <div class="col-sm whaletext" >
-      <h2 class="display-4">Lac Abee </h2>
-      <h3>Swim with a Whale</h3>
-       <p >highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
-     </div>
-       
-  </div>
-  
-  </div>
+<!-- ///////////////////////////// Whale section////////////////////////////////////////////////////// -->
 
-  
-<div class=" constainer-fluid signs">
-  <div class="row">
-    <div class="col-sm">
-      <i class="fas fa-check fa-3x" style="display:block; color: #65b9d2;"></i>
-      <p class="faparagraphs">Highly rated Adventures</p>
-    </div>
-    <div class="col-sm">
-      <i  class="fas fa-bullseye fa-3x" style="display:block; color: #65b9d2;"></i>
-      <p  class="faparagraphs">Popular Adventures</p>
-    </div>
-    <div class="col-sm">
-      <i class="far fa-heart fa-3x" style= "display:block; color: #65b9d2;kkk" ></i>
-      <p  class="faparagraphs">Highly recommended</p>
-    </div>
-  </div>
+  <section class="whale-section">
 
-
-  <div id="testimonial" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-     
-      <div class="carousel-item active" data-interval="10000">
-        <h3 class="h3testimonial">Expetional Adventure</h3>
-        <p class="h3testimonial">This was the perfect Adventure ever made</p>
-        <img src="/images/testimonial1.jpg" class="testimonial" alt="...">
-        <p class="nametestimonial">Mark</p>
-        
+    <div class="container-fluid whale-section">
+      <div class="row">
+        <div class="col-sm whaletext" >
+         <h2 class="display-4">Lac Abee </h2>
+         <h3>Swim with a Whale</h3>
+          <p class="lead">highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
+        </div>
+        <div class="col-sm ">
+         <img class="img-fluid snorkeling " style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604855987/snorkeling1_e91z6u.jpg" alt="snorkeling">
+        </div> 
+           
       </div>
+      <div class="row ">
+        
+        <div class="col-sm">
+         <img class="img-fluid boat" style="width:100%"; src="https://res.cloudinary.com/djibtech/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1604856020/boat_illnvv.jpg" alt="boat">
+          
+        </div> 
+        <div class="col-sm whaletext" >
+          <h2 class="display-4">Lac Abee </h2>
+          <h3>Swim with a Whale</h3>
+           <p class="lead">highly recommended operator and dive centre can organise all kinds of tours throughout the country, on land and at sea, including diving and snorkelling trips, whale-shark spotting outings (between November and January), excursions to Lac Abbé and Lac Assal, as well as live-aboard dive boats to Gulf of Tadjoura and Les Sept Frères archipelago. It's staffed with qualified instructors who speak English.</p>
+         </div>
+           
+      </div>
+      
+      </div>
+    
+      <!-- ////////////////////////////////////////////Icons sectio///////////////////////////////// -->
+    
+      <section class="icon">
+        <div class=" container">
+          <div class="row">
+            <div class="col-sm">
+              <i class="fas fa-check fa-3x" style="display:block; color: #71c9ce;"></i>
+              <p class="faparagraphs">Highly rated Adventures</p>
+            </div>
+            <div class="col-sm">
+              <i  class="fas fa-bullseye fa-3x" style="display:block; color: #71c9ce;"></i>
+              <p  class="faparagraphs">Popular Adventures</p>
+            </div>
+            <div class="col-sm">
+              <i class="far fa-heart fa-3x" style= "display:block; color: #71c9ce;" ></i>
+              <p  class="faparagraphs">Highly recommended</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </section>
+    
+ 
+<!-- ///////////////////////////////////Testimonial section//////////////////////////////////// -->
+  <div id="testimonial" class="carousel slide" data-ride="carousel">
+   
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-interval="10000">
+         <h3 class="display-5">Expetional Adventure</h3>
+          <p class="lead">This was the perfect Adventure ever made</p>
+          <img src="/images/testimonial1.jpg" class="testimonial" alt="...">
+          <p class="nametestimonial">Mark</p>
+        </div>
+       
+           
       <div class="carousel-item" data-interval="2000">
-        <h3 class="h3testimonial">Unforgettable and ejoyable</h3>
-        <p class="h3testimonial"> I will cenrtenly attempt once more in future</p>
+        <h3 class="display-5">Unforgettable and ejoyable</h3>
+        <p class="lead"> I will cenrtenly attempt once more in future</p>
         <img src="/images/testimonial2.jpg" class="testimonial" alt="...">
         <p class="nametestimonial">Jane</p>
       
         
       </div>
       <div class="carousel-item">
-          <h3 class="h3testimonial">Amazing</h3>
-        <p class="h3testimonial">Beyond my Expectatins</p>
+          <h3 class="display-5">Amazing</h3>
+        <p class="lead">Beyond my Expectatins</p>
         <img src="/images/testimonial3.jpg" class="testimonial" alt="...">
         <p class="nametestimonial">Andrew</p>
       
@@ -198,8 +211,38 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  
-</div>
-</div>
 
+  <!-- ///////////////////////////////// Sample Recent Blogs /////////////////////////////////////// -->
+  
+  <section class="sampleBlogs">
+    <div class="container-flui">
+      <h3 class="display-4">Recent Adventure Blogs</h3>
+      <div class="row">
+    
+        <div class="col-sm-3">
+          <h5 class="display-6"> Ambado </h5>
+          <img src="https://res.cloudinary.com/djibtech/image/upload/t_media_lib_thumb/v1613376879/beach_fpe15j.jpg" alt="">
+          <div><small><a href="/showposts">Read More...</a></small></div> 
+        </div>
+        <div class="col-sm-3">
+          <h5 class="display-6"> Ambado </h5>
+          <img src="https://res.cloudinary.com/djibtech/image/upload/t_media_lib_thumb/v1613376879/beach_fpe15j.jpg" alt="">
+          <div><small><a href="/showposts" >Read More...</a></small></div> 
+        </div>
+        <div class="col-sm-3">
+          <h5 class="display-6"> Ambado </h5>
+          <img src="https://res.cloudinary.com/djibtech/image/upload/t_media_lib_thumb/v1613376879/beach_fpe15j.jpg" alt="">
+          <div><small><a href="/showposts" >Read More...</a></small></div> 
+        </div>
+        <div class="col-sm-3">
+          <h5 class="display-6"> Ambado </h5>
+          <img src="https://res.cloudinary.com/djibtech/image/upload/t_media_lib_thumb/v1613376879/beach_fpe15j.jpg" alt="">
+          <div><small><a href="/showposts" >Read More...</a></small></div> 
+        </div>
+       
+       
+      </div>
+    </div>
+  </section>
+ 
 <%- include('partials/footer'); -%>

@@ -2,12 +2,14 @@
 <%- include('partials/header'); -%>
 
 
+   <%if(error){%>
+   <p class="error"><%=error%></p>
+
+   <%}%>
+   
 
 <form action="/Login" method="Post">
-  <%if(error){%>
-    <p class="error"><%=error%></p>
-   <%}%>
-  
+ 
   <div class="regform" >
     <h2 class="h2Login">Sign In</h2>
     <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
@@ -45,6 +47,10 @@
 </div>
 
 
+
+
+
+<%- include('partials/footer'); -%>
 
 
 

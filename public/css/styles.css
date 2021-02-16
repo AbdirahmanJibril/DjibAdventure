@@ -5,9 +5,9 @@
  }
 
 body{
-  
+ 
   text-align: center;
-  background-color: #cbf1f5;
+  background-color: #e3fdfd;
   margin:0;
   padding: 0;
 }
@@ -16,7 +16,7 @@ h1,h2,h3{
 
 }
 .navbar {
-  background-color: #cbf1f5;
+  background-color: #e3fdfd;
 }
 .navbar .navbar-brand {
   color: #0b0b0b;
@@ -119,6 +119,7 @@ font-size: 1.5rem;
   
   color:red;
   font-size: 1.2rem;
+
 }
 .info{
 
@@ -145,14 +146,22 @@ top:0;
   background-color:lightseagreen;
   
 }
+/* .container.jumboText{
+  background-color:lightseagreen;
+  width:40%;
+  position: absolute;
+  left:0;
+  top:100px;
+} */
 .jumbotron{
-  background-image: url(/images/beach.jpg);
+  background-image: url(https://res.cloudinary.com/djibtech/image/upload/v1613376879/beach_fpe15j.jpg);
   background-size:cover;
   background-repeat: no-repeat;
   position: relative;
   color: white;
   font-weight: 900;
 height: 500px;
+margin-bottom: 50px;
  /* background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce); */
 }
 
@@ -264,15 +273,32 @@ span{
   text-align: left;
  font-weight: bold;
 }
+ul >.list-group.list-group-flush{
+  text-align: left;
+}
+.list-group-item.card-deck-item{
+width: 100%;
+}
+
+
 
 .card-deck{
+  margin: 100px auto;
+
+}
+.card-deck .card-title{
  margin:3%;
+ text-align: left;
  }
 .card{
   background-color: #e3fdfd;
   /* color:#cbf1f5; */
   font-weight: bolder;
 
+
+ }
+ .card-body{
+   
  }
 .list-group{
   display: inline-flex;
@@ -323,22 +349,33 @@ span{
 }
 .container-fluid.whale-section{
   
-  margin-bottom: 50px;
-   background-color: #a5dbde;
+  margin-bottom: 100px;
+   background-color: #a6e3e9;
    line-height: 1.2;
    color:white;
+   font-weight: bolder;
    }
    .whale-section p{
-     font-size: 1.2rem;
+     text-align: justify;
+     font-size: 1.1rem;
      line-height: 1.2;
      margin: 50px;
-     font-weight:normal;
-     color:darkslategrey;
+     font-weight:lighter;
+    color:white;
+   
    
    }
-   .container-fluid.whale-section > h2 {
-     color:White;
+   .display-5{
+     font-size: 1.5rem;
+     font-weight: 300;
+     line-height: 1.5;
+     color: white;
+     margin:50px 20px auto;
    }
+   /* .container-fluid.whale-section  {
+    background-color:#cbf1f5 ;
+     
+       } */
    
    
    
@@ -357,56 +394,88 @@ span{
   }
 
 
-.container-fluid.signs{
+.container .signs{
   margin: 100px auto;
+ 
 }
 
-.faparagraphs{
+p.faparagraphs{
   font-size: .95rem;
  text-align: center;
  font-weight: bold;
  margin:20px auto;
-color: #65b9d2;
+ color: #71c9ce;
 }
 
 #testimonial{
-  background-color: #c0ebef;
+  background-color: #a6e3e9 ;
   color: White;
+  font-weight: bolder;
   text-align: center;
+  height: 400px;
+  margin: 100px auto;
 }
 
 .col-6.userspage, .col-md-3.userpage{
-  background-color:#c0ebef
+  background-color:#c0ebef;
 }
 .testimonial {
   display:block;
-  
   border-radius: 100%;
   width: 10%;
   margin:10px auto;
 
 }
-.h3testimonial{
-color: darkcyan;
+/* .h3testimonial{
+color: White;
+margin-top:20px;
+} */
+
+.infoSection{
+ height: 300px;
+  background-color: #71c9ce;
+}
+ .list-group.lowersection .list-group-item{
+  background-color: #71c9ce;
+  border:none;
+  color: whitesmoke;
+  
+}
+
+.sampleBlogs h3{
+  color: #71c9ce;
+  margin:50px auto;
+}
+.sampleBlogs h5{
+  color: #71c9ce;
+}
+.sampleBlogs img{
+  margin: 10px auto;
 }
 
 
-
   .footer {
-  
-    height: 50px;
+    position: relative;
+    bottom:0;
+    top:100px;
   	text-align: center;
-   	background-color:#a6e3e9;
+   	background-color:#71c9ce;
+     height:max-content;
+  
+
   }
-  .footer p {
-    color: rgb(7, 139, 133);
-    text-align: center;
-   	font-size: 12px;
+  .pfooter{
+  color:white;
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 10px;
+    
   }
+ 
   
   @media (max-width: 575px) {
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
-      color: #0b0b0b;
+      color: #71c9ce;
     }
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
@@ -484,6 +553,8 @@ color: darkcyan;
       .jumbotron.userspage{
         height: 40%;
       }
+     
+     
     /* .navbar-brand{
       display: flex;
     }
@@ -499,9 +570,20 @@ color: darkcyan;
     }
     .img-fluid.boat, .img-fluid.snorkeling {
     margin: 5px 0;
-  }
+    }
+    .col-6.jumboText{
+      display: absolute;
+      top: 100px;
+    }
+    .col-6.jumboText h1{
+     font-size: x-large;
+     color: white;
+     font-weight: bolder;
+     margin-top: 10px;
+     margin-bottom: 5px;
 
-
+             
+    }
  .form-inline{
 width: 50%;
 display:inline-flexbox;
@@ -510,5 +592,6 @@ display:inline-flexbox;
 display: inline;
 margin: 0;
 }
+
 
   }
