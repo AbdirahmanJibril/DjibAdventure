@@ -1,0 +1,19 @@
+
+
+
+
+ <%foundPost.forEach( (Post) =>{%> 
+    <form action="/editPost/<%=Post._id%>" method="POST" >
+    <h5 class="card-title">New Post</h5>
+    <div>
+    <input type="text" class="form-control" name="title" value="<%=Post.title%>" placeholder="Title">
+    <input type="text" class="form-control" name="place" value="<%=Post.place%>"  placeholder="Place Adventure">
+    <input type="text" class="form-control" name= "description"  value="<%=Post.description%>" placeholder="Comments">
+    </div> 
+ 
+   <!-- <div> <input type="file" accept="images/*"  name="images" multiple /></div> -->
+   <div><button type="submit" class="btn btn-info">sednd Update</button></div> 
+  </form>
+ 
+  <%});%>
+  </div>

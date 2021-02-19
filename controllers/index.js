@@ -6,6 +6,7 @@ const https= require("https");
 const ejs = require("ejs");
 const util = require('util');
 const {deleteProfileImage}=require('../middleware');
+const { title } = require("process");
 // const { image } = require("faker");
 
 
@@ -269,25 +270,31 @@ const updatePost = async (req,res)=>{
   
       res.render("update", {foundPost:user.Post, foundAdventure:user.Adventure, fullYear:fullYear, user:req.user});
   }
-
+// change a Post
   const changeApost= async  (req,res)=>{
 
-  //   const {title,place,description}=req.body;
-
-  //  const id=req.params.id;
-  //  let user = await User.findByIdAndUpdate({_id:req.user._id},{Post:{$elemMatch:{_id:id}}},{$set:
-  //     {"Post.$.title":title,
-  //      "Post.$.place":place,
-  //      "Post.$.description":description}},
-  //       {multiple:true} 
-        
-  //       );
-  //       await user.save();
     
-  //   req.flash('success', 'You have update your Post');
-  //   res.redirect('/myblogs');
+    const id=req.params.id;
+    let user = await User.findById({_id:req.user._id},  {Post:{$elemMatch:{_id:id}}});
+  
+     res.render("changePost", {foundPost:user.Post, foundAdventure:user.Adventure, fullYear:fullYear});
+
   }
 
+  const editPost  = async (req,res)=>{
+   const id=req.params.id;
+    
+    let user = await User.findOneAndUpdate({"_id":req.user._id, "Post._id":id},
+    {"$set":{"Post.$.title":req.body.title,
+    "Post.$.place":req.body.place,
+    "Post.$.title":req.body.title,
+      }},
+      {new:true});
+   
+    user.save();
+    res.redirect('/myblogs');
+  }
+  
 
 const getDashboard  = (req,res)=>{
   if (req.isAuthenticated()) {
@@ -422,6 +429,7 @@ module.exports = {
     deleteMyimages,
     updatePost,
     postDelete,
+    editPost,
     getProfile,
     updateProfile,
     myBlogs,

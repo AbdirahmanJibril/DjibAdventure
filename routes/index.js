@@ -25,12 +25,13 @@ const {homeRoute,
        postRegisterRoute,
        deleteMyimages,
        updatePost,
+       changeApost,
+       editPost,
        postDelete,
        getProfile,
        updateProfile,
        myBlogs,
        getDashboard,
-       changeApost,
        getMoucha,
        
       
@@ -87,7 +88,7 @@ router.get("/userspage", usersRoute);
    //cancel booking
   router.post("/delete", cancelBookingRoute);
    
-  // show all blogs
+  // show all myblogs
   router.get('/show', function(req,res){
     res.render('show', {AdventurePlace:foundAdventure.Adventure, user:req.user, fullYear:fullYear});
   });
@@ -126,9 +127,10 @@ const userId=req.user._id;
  });
 
 //posts routs
+// user blogs and forms to blog
 router.get('/myblogs', myBlogs);
- router.get('/showposts', asyncErrorHandler( getPosts));
-//  router.get('/getBlogForm', 	asyncErrorHandler( getRouteBlogPost) );
+//  router.get('/showposts', asyncErrorHandler( getPosts));
+ router.get('/getBlogForm', 	asyncErrorHandler( getRouteBlogPost) );
  router.post('/submitBlog', upload.array('images', 4), 	asyncErrorHandler (postRoutBlogPost) );
 
  //Delete Images
@@ -138,10 +140,12 @@ router.get('/deleteImages/:id', asyncErrorHandler(deleteMyimages));
 // Delet/Update Post Get-Route
 router.get("/postUpdate/:id/update", asyncErrorHandler(updatePost));
 
-//changePost
+// changePost
 router.post("/changePost/:id", asyncErrorHandler(changeApost));
+// edit post
+router.post("/editPost/:id",  asyncErrorHandler(editPost));
 
-//Delete POST Post-Route
+// Delete POST Post-Route
 router.post('/deletPost/:id', asyncErrorHandler(postDelete));
 
 

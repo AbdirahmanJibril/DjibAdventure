@@ -39,7 +39,7 @@
         <div class="card-body">
          
           <%foundPost.forEach( (updatePost) =>{%> 
-          <form action="/changePost/<%=updatePost._id%>" method="Post" enctype="multipart/form-data" >
+          <form action="/changePost/<%=updatePost._id%>" method="POST"  >
           <h5 class="card-title">New Post</h5>
           <div>
           <input type="text" class="form-control" name="title" value="<%=updatePost.title%>" placeholder="Title">
@@ -47,7 +47,7 @@
           <input type="text" class="form-control" name= "description"  value="<%=updatePost.description%>" placeholder="Comments">
           </div> 
        
-         <div> <input type="file" accept="images/*"  name="images" multiple /></div>
+         <!-- <div> <input type="file" accept="images/*"  name="images" multiple /></div> -->
          <div><button type="submit" class="btn btn-info">Update Post</button></div> 
         </form>
        

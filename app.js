@@ -26,7 +26,7 @@ const weather = require('./weather.js')
 
 // require routes
 const index 	= require('./routes/index');
-
+// const posts  = require('./routes/posts');
 
 
 
@@ -91,6 +91,7 @@ function(accessToken, refreshToken, profile, cb) {
 
 // Mount routes
 app.use('/', index);
+// app.use('/posts',posts);
 
 
 

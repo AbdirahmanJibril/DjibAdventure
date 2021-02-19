@@ -153,16 +153,18 @@ top:0;
   left:0;
   top:100px;
 } */
+ 
 .jumbotron{
-  background-image: url(https://res.cloudinary.com/djibtech/image/upload/v1613376879/beach_fpe15j.jpg);
+  /* background-image: url(https://res.cloudinary.com/djibtech/image/upload/v1613550984/beach1_tdqaxj.jpg);
   background-size:cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   position: relative;
   color: white;
   font-weight: 900;
-height: 500px;
+height: 600px;
 margin-bottom: 50px;
- /* background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce); */
+margin-top: 0;
+ background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce);
 }
 
  p{
@@ -189,11 +191,12 @@ display: inline-block;
   color:#7fd1d9;
   text-align: center;
   margin-top:0;
+  margin-bottom: 0;
 }
 
 .weather-div p{
   color: #448D76;
-  margin: 0 2px auto 2px;
+  margin: 0 2px;
   font-weight: bolder;
   font-size: 0.9rem;
 }
@@ -561,10 +564,10 @@ margin-top:20px;
   */
   }
   @media screen and (max-width: 576px) {
-    .weather-div{
+    /* .weather-div{
     display: none;
     }
- 
+  */
     .time-div{
       display: none;
     }
