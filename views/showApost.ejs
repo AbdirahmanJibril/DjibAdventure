@@ -1,0 +1,46 @@
+<%- include('partials/header'); -%>
+
+
+ <div class="card ">
+ 
+  <div class="card-body">
+   
+
+    <div class="row">
+      <div class="col-md-8">
+        <%foundPost.forEach((Post)=>{%>  
+        <div class="row">
+      
+          <div class="col-md-2">
+          
+            <%Post.images.forEach((image)=>{%>   
+              
+              <img class="img-thumbnail" src="<%=image.path%>" alt="myAdventure" style="width: 100px;"/>
+            <%});%>
+            <h5 class="card-title"><%=Post.title%></h5>
+          </div>
+          <div class="col-md-5">
+          
+            <p class="lead"><%=Post.place%></p>
+            <div class="description"><%=Post.description%></div>
+          </div>
+        </div>
+        <hr class="my-4">
+        <%});%>
+      </div>
+      <div class="col-md-3 offset-md-1">
+        <div class="card" style="border-radius: 20px; margin:10px auot">
+          <div class="card" style="border-radius: 20px; margin:10px auto">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quidem veritatis officia quisquam ut saepe voluptate quia nulla atque architecto quas deleniti minima iure iste, facere consequuntur error dolorem perferendis.
+          </div>
+          <div class="card" style="border-radius: 20px; margin:10px auto">
+           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque dolorem non dignissimos eveniet consectetur ex expedita, optio nulla velit autem nisi praesentium aut libero numquam voluptatem reprehenderit eum unde voluptate!
+          </div>
+          <div class="card" style="border-radius: 20px; margin:10px auto">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quas deserunt, odit optio dolores dolore nisi qui, fugiat hic illo, accusantium error nulla nostrum pariatur molestiae sequi numquam quisquam enim.
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+ <%- include('partials/footer'); -%>

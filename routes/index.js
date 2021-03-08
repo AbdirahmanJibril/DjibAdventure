@@ -19,13 +19,14 @@ const {homeRoute,
       postRoutBlogPost,
        bookingRoute, 
       bookingUpdate,
+      changeBooking,
        cancelBookingRoute,
        usersRoute,
        registerRoute,
        postRegisterRoute,
        deleteMyimages,
        updatePost,
-       changeApost,
+       showApost,
        editPost,
        postDelete,
        getProfile,
@@ -33,6 +34,7 @@ const {homeRoute,
        myBlogs,
        getDashboard,
        getMoucha,
+      
        
       
      
@@ -84,11 +86,13 @@ router.get("/userspage", usersRoute);
    router.post("/userspage", bookingRoute );     
  
    router.get("/Register", registerRoute);
-  
+  router.post("/Register", upload.single('image'), asyncErrorHandler (postRegisterRoute))
    //cancel booking
   router.post("/delete", cancelBookingRoute);
    
   // show all myblogs
+  router.get('/showposts',  asyncErrorHandler(getPosts));
+  
   router.get('/show', function(req,res){
     res.render('show', {AdventurePlace:foundAdventure.Adventure, user:req.user, fullYear:fullYear});
   });
@@ -100,36 +104,16 @@ router.get("/userspage", usersRoute);
 //Adventure Post-Update
 
 //Booking Update GET-route
-router.get("/update/:id/show", bookingUpdate);
-
-// update booking POST-route
- router.post("/update/:id", async(req,res)=>{
-
- const id=req.params._id;
-const userId=req.user._id;
-  const trip =  new Trip({
-    Trip:req.body.destination,
-     Date:req.body.adventureDate,
-     person:req.body.poeple
-    });   
-    trip.save();
-      
-
-  let foundUser = await User.findByIdAndUpdate({_id:userId, "Adventure._id":id},  { $set: { "Adventure.$[]": trip } }, () => {
-    
-     
-       req.flash('message', 'You have successfully Updated', req.body.destination);
-       res.redirect("/userspage");
-     
-    
-    });
+router.get("/update/:id/show",	asyncErrorHandler( bookingUpdate) );
  
- });
+// Booking  update POST-route
+router.post("/update/:id", asyncErrorHandler( changeBooking) );
 
+//////////////////////////// USER BLOGS MANAGEMENT ////////////////////////////////////////////////
 //posts routs
 // user blogs and forms to blog
 router.get('/myblogs', myBlogs);
-//  router.get('/showposts', asyncErrorHandler( getPosts));
+
  router.get('/getBlogForm', 	asyncErrorHandler( getRouteBlogPost) );
  router.post('/submitBlog', upload.array('images', 4), 	asyncErrorHandler (postRoutBlogPost) );
 
@@ -141,7 +125,7 @@ router.get('/deleteImages/:id', asyncErrorHandler(deleteMyimages));
 router.get("/postUpdate/:id/update", asyncErrorHandler(updatePost));
 
 // changePost
-router.post("/changePost/:id", asyncErrorHandler(changeApost));
+router.get("/showPost/:id/showApost", asyncErrorHandler(showApost));
 // edit post
 router.post("/editPost/:id",  asyncErrorHandler(editPost));
 
@@ -149,6 +133,7 @@ router.post("/editPost/:id",  asyncErrorHandler(editPost));
 router.post('/deletPost/:id', asyncErrorHandler(postDelete));
 
 
+////////////////////////////////////////// USER LOGING / LOGOUT ROUTES /////////////////////////////////
  
   // Login Get-Route
      router.get("/Login", function(req,res) {
@@ -172,6 +157,7 @@ router.post('/deletPost/:id', asyncErrorHandler(postDelete));
                                   
 );
  
+////////////////////////////////////// PASSWORD RESET ROUTES //////////////////////////////////////////
  //forgot Get-Route
  router.get('/forgot', function(req, res) {
   res.render('forgot', {

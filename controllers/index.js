@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {User, Trip,Post} =require('../models/user');
 const {cloudinary} =  require('../cloudinary');
 const passport = require('passport');
@@ -103,17 +104,41 @@ const updateProfile = async (req, res, next) => {
  
 //-----------------------------------Blogs---------------------------------------------------
 
+// Show a Post
+const showApost= async  (req,res)=>{
+
+  const id=req.params.id;
+   let Post = await User.find( {"Post":{$elemMatch:{"_id":id}}});
+  Post.forEach((foundPost)=>{
+  
+     res.render("showApost", {foundPost:foundPost.Post, image:foundPost.image, user:req.user, fullYear:fullYear});
+  });
+}
+
 //show all blogs
 const getPosts= async (req,res)=>{
 
-  let posts = await User.find({Post:{$elemMatch:{ $ne: null}}});
-  let Posts = posts.forEach((foundPosts)=>{
-  
+ 
+ const myCustomLabels = {
+  nextPage: 'next',
+  prevPage: 'prev'
+};
+ const options = {
+  page: req.query.page || 1,
+  limit: 3,
+  customLabels:myCustomLabels,
+  sort:{'Post._id': -1}
+}
+let posts = await User.aggregate([{$project:{ 'image.path':1, Post:1}},
+{$sort: {'Post._id': -1}}]);
+User.aggregatePaginate(posts,options).then(function(results){
+
+    res.render('showBlogs', {showPosts:results, user:req.user, fullYear}); 
+  }).catch(function(err){
+    console.log(err);
   });
-    res.render('showBlogs', {show:posts});
-  }
-   
   
+  }
 
 //usere create blogpage
 const getRouteBlogPost =  (req, res) =>  {
@@ -141,10 +166,11 @@ const postRoutBlogPost=  async (req,res)=>{
     title:req.body.title,
      place:req.body.place,
      description:req.body.description,
-     images:req.body.images
+     images:req.body.images,
+     
     });   
     post.save();
-           
+  
    await User.findById(req.user._id,  function(err, foundUser){
          
       if(err){
@@ -169,9 +195,7 @@ const getMoucha = (req,res) =>{
 }
 // booking route
 const bookingRoute = (req,res)=> {
-  
-  
-  
+    
         const trip =  new Trip({
           Trip:req.body.destination,
            Date:req.body.adventureDate,
@@ -220,8 +244,25 @@ const cancelBookingRoute = async (req, res) =>{
         res.render("show", {AdventurePlace:foundAdventure.Adventure , foundImages:foundAdventure, fullYear:fullYear,  user:req.user});
       
   }
+  
+  // update booking POST-route
+  const changeBooking = async (req,res)=> {
+ 
+  
+    let Booking = await User.findOneAndUpdate({"_id":req.user._id, "Adventure._id":req.params.id}, { $set: { 
+    "Adventure.$.Trip": req.body.Trip,
+    "Adventure.$.Date": req.body.Date, 
+    "Adventure.$.person": req.body.person,
+     }}, {new:true});
+ 
+     Booking.save();
+       
+         req.flash('message', 'You have successfully Updated', req.body.Trip);
+         res.redirect("/userspage");
+     
+     
 
-
+    }
   
   //Delete images from  post
   
@@ -262,7 +303,6 @@ const postDelete =  async (req, res) => {
 }
   
 
-
 //Post update/delete Get Route
 const updatePost = async (req,res)=>{
   const id=req.params.id;
@@ -270,24 +310,15 @@ const updatePost = async (req,res)=>{
   
       res.render("update", {foundPost:user.Post, foundAdventure:user.Adventure, fullYear:fullYear, user:req.user});
   }
-// change a Post
-  const changeApost= async  (req,res)=>{
 
-    
-    const id=req.params.id;
-    let user = await User.findById({_id:req.user._id},  {Post:{$elemMatch:{_id:id}}});
-  
-     res.render("changePost", {foundPost:user.Post, foundAdventure:user.Adventure, fullYear:fullYear});
-
-  }
 
   const editPost  = async (req,res)=>{
    const id=req.params.id;
     
     let user = await User.findOneAndUpdate({"_id":req.user._id, "Post._id":id},
-    {"$set":{"Post.$.title":req.body.title,
+    {$set:{"Post.$.title":req.body.title,
     "Post.$.place":req.body.place,
-    "Post.$.title":req.body.title,
+    "Post.$.description":req.body.description,
       }},
       {new:true});
    
@@ -387,8 +418,6 @@ const  usersRoute = (req, res) => {
                         
           });
 
-         
-            console.log(req.body.image);
          const user = await  User.register(newUser, req.body.password);
           req.login(user, function(err) {
             if (err){
@@ -422,10 +451,11 @@ module.exports = {
     postRoutBlogPost,
     bookingRoute,
     usersRoute,
-    registerRoute,
-    postRegisterRoute,
     cancelBookingRoute,
     bookingUpdate,
+    changeBooking,
+    registerRoute,
+    postRegisterRoute,
     deleteMyimages,
     updatePost,
     postDelete,
@@ -434,7 +464,7 @@ module.exports = {
     updateProfile,
     myBlogs,
     getDashboard,
-    changeApost,
+    showApost,
     getMoucha
  
 

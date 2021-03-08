@@ -1,67 +1,42 @@
 <%- include('partials/header'); -%>
 
-<h1>Update</h1>
+<h2>Update</h2>
 
-
-<div class="card">
+<div class="container">
+  <div class="card">
     <div class="card-header">
        Your Existing Post
     </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
     
-      <!-- Existing Post form -->
- 
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <%foundPost.forEach( (Post) =>{%>
-          <form action="/deletPost/<%=Post._id%>" method="Post">
-            <h5 class="card-title">Existing Post</h5>
-              <p class="card-text">Destination: <%=Post.title%></p>
-                <p class="card-text">Destination: <%=Post.place%></p>
-                 <p class="card-text">Destination: <%=Post.description%></p>
-                    <%Post.images.forEach( (image) =>{%>
-            <div> <img src="<%=image.path%>" alt="myAdventure" width="100px;"/></div>
-            <%});%>  
-            <button type="submit" class="btn btn-primary">Delete Post</button>
-          </form>
-          <%});%> 
-        </div>
-      </div>    
-
+        <div class="col">
+          <div class="card">
+            <%foundPost.forEach( (Post) =>{%> 
+              <form action="/editPost/<%=Post._id%>" method="POST"  >
+               
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+            <input type="text" name="title" value="<%=Post.title%>" placeholder="Title"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Place</span>
+            <input type="text"  name="place" value="<%=Post.place%>"  placeholder="Place Adventure" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+         <div class="input-group">
+            <span class="input-group-text">Comments Adventure</span>
+            <input name= "description"  value="<%=Post.description%>" class="form-control" aria-label="With textarea"></input>
+          </div>
       
-      <!-- new post form -->
-      
-      <div class="card" style="width: 18rem;">
-        <h3>Update your</h3>
-        <div class="card-body">
+             <button  type="submit" class="btn btn-info">Update Post</button> 
+            </form>
+         <%});%>
+          </div>
          
-          <%foundPost.forEach( (updatePost) =>{%> 
-          <form action="/changePost/<%=updatePost._id%>" method="POST"  >
-          <h5 class="card-title">New Post</h5>
-          <div>
-          <input type="text" class="form-control" name="title" value="<%=updatePost.title%>" placeholder="Title">
-          <input type="text" class="form-control" name="place" value="<%=updatePost.place%>"  placeholder="Place Adventure">
-          <input type="text" class="form-control" name= "description"  value="<%=updatePost.description%>" placeholder="Comments">
-          </div> 
-       
-         <!-- <div> <input type="file" accept="images/*"  name="images" multiple /></div> -->
-         <div><button type="submit" class="btn btn-info">Update Post</button></div> 
-        </form>
-       
-        <%});%>
         </div>
+      
       </div>
-    
+
     </div>
-      
-  
-    
-      
-  
-    
+
     
     <%- include('partials/footer'); -%>
 

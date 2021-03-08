@@ -2,49 +2,67 @@
 
 
 <div class="row justify-content-around">
-    <div class="col-md-3 ">
-     <h2>Create new post</h2>
-     <div class="form-group">
-    <form  action="/submitBlog" method="POST" enctype="multipart/form-data">
 
-    <input class="form-control" type="text" name="title" placeholder="Title">
-    <input  class="form-control" type="text" name="place" placeholder="Place">
-    <input class="form-control" type="text" name="description" placeholder="Description">
-    <input  class="form-control-file"   type="file" accept="images/*" name="images" multiple />
-    <button type="submit" class="btn btn-info">Submit</button>
-    
-    </form>
-    </div>
-    </div>
+   
         <!-- uploaded Post & pictures -->
-    <div class="col-md-8 border border-info">
+    <div class="col-md-8 ">
+        <div class="card">
+            <div class="card-title"><h5>My Blogs</h5></div>
+            <div class="card-body">
+            
+                <div class="row">
 
-<div class="row">
-
-  
-
-    <%foundPost.forEach((Post)=>{%> 
-        <div class="col-sm-4">
-            <form>   
-    <div class="card" style=" margin-top: 5xp; margin-bottom: 5px;">
-        <div class="card-body">
-            <h5 class="card-title">Trip: <%=Post.title%></h5>
-            <p class="card-text">Adventure: <%=Post.place%></p> 
-            <p class="card-text">Comments:<%=Post.description%></p>
-            <%Post.images.forEach((image)=>{%>   
-                <img src="<%=image.path%>" alt="myAdventure" width="50px"/>
+                    <%foundPost.forEach((Post)=>{%>    
+                <div class="col-sm-4">
+                  
+                    
+                    <div class="card" style=" margin-top: 5xp; margin-bottom: 5px; display: flex;">
+                        <div class="card-body">
+                            <h5 class="card-title">Trip: <%=Post.title%></h5>
+                          
+                            <div class="card-img">
+                                <%Post.images.forEach((image)=>{%>   
+                                    <img class="img-thumbnail" src="<%=image.path%>" alt="myAdventure" style="width: 100px;"/>
+                                    <%});%>
+                            </div>
+                          
+                            <a  href= "/postUpdate/<%=Post._id%>/update">Update Post</a> 
+                        </div>
+                        <form action="/deletPost/<%=Post._id%>" method="Post">
+                         <button type="submit" class="btn btn-primary">Delete Post</button> 
+                         </form>
+                        </div>
+                      
+                </div>           
                 <%});%>
-            <a  href= "/postUpdate/<%=Post._id%>/update">Update Post</a>  
-        </div>
+                
+           
+                </div>
+               
+            </div>
+            
         </div>
 
-</div>           
-<%});%>
-
-</form> 
-</div>
 </div>
    
+<div class="col-md-4 ">
+    <div class="card">
+        <div class="card-title"><h5>Create new post</h5></div>
+        <div class="card-body">
+    <div class="form-group">
+   <form  action="/submitBlog" method="POST" enctype="multipart/form-data">
+
+   <input class="form-control" type="text" name="title" placeholder="Title">
+   <input  class="form-control" type="text" name="place" placeholder="Place">
+   <input class="form-control" type="text" name="description" placeholder="Description">
+   <input  class="form-control-file"   type="file" accept="images/*" name="images" multiple />
+   <button type="submit" class="btn btn-info">Submit</button>
+   
+   </form>
+   </div>
+   </div>
+</div>
+</div>
 </div>
 
 

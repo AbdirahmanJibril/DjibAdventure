@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+var aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 const passportLocalMongoose = require('passport-local-mongoose');
 const passport = require('passport');
 const findOrCreate = require('mongoose-findorcreate');
+const { date } = require('faker');
 
 
 const Schema = mongoose.Schema;
@@ -12,10 +14,11 @@ const PostSchema = new Schema({
 	place: String,
 	description: String,
 	images: [ {path:String, filename:String} ],
+  createdAt:{type:Date,  default:Date.now},
+  
 	location: String,
 	lat: Number,
   lng: Number,
-
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
@@ -26,7 +29,8 @@ const PostSchema = new Schema({
 			ref: 'Review'
 		}
 	]
-});
+},{timestamps:true});
+
 
 const  Post = mongoose.model("Post",PostSchema);
 
@@ -61,6 +65,7 @@ const userSchema = new mongoose.Schema({
    
   userSchema.plugin(passportLocalMongoose, {usernameField:'email'});
   userSchema.plugin(findOrCreate);
+  userSchema.plugin(aggregatePaginate);
  const User =  mongoose.model('User', userSchema);
 
   module.exports = {

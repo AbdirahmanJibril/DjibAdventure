@@ -1,75 +1,58 @@
-<%- include('partials/header'); -%>
+  <%- include('partials/header'); -%>
+  
   <h1 style="color:turquoise ;">My Booking Dashboard</h1>
-<% if (message) { %>
+  <% if (message) { %>
   <h2 style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= message%></h2>
   <% } %>
-
-  <div class="row">
-    <div class="col-md-2 border border-info offset-md-1">
-    <h2>Book a Trip</h2>
-         
-      <form class="form-group row" action="/userspage" method="POST">
-        <fieldset>
-        <input type="date" class="form-control mb-2 mr-sm-2" name="adventureDate" id="adventureDate" placeholder="Date"  required="required">
-        
-        
-        <input type="text" class="form-control mb-2 mr-sm-2" name="poeple"  id="poeple" placeholder="Number Persons"   required="required">
-        
-    
-      <select class="custom-select  mb-2 mr-sm-2" name="destination" id="destination" placeholder="Choose Adventure"  required="required">
-        <option>Ambado</option>
-        <option>Djibouti City</option>
-        <option>Day</option>
-        <option>Lac Assal</option>
-        <option>Whale Tour</option>
-      </select>
-    
-        <button type="submit" class="btn btn-info mb-2">Book</button>
-      </fieldset>
-      </form>
-      
-    </div>
-
-    <div class="col-md-6 border border-info offset-md-2">
-      <h2>My Existing Booking</h2>
-      <form action="/delete" method="POST">
-        <%Booking.Adventure.forEach((foundAdventure)=>{%>
-      
-        <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
-        </a>
-        <P>Adventure:<%=foundAdventure.Trip%></p>
-        <p>Date:<%=foundAdventure.Date%></p>
-        <p>Participants:<%=foundAdventure.person%></p>
-        <button type="submit" name="toDelete"  value="<%=foundAdventure._id%>"  class="btn  btn-info mb-2">Cancel</button>
-        <a href="/update/<%=foundAdventure._id%>/show">Update</a>
-      </div>
-          
-        <%});%>
-      </div>   
-
-    </div>
-
-
   
-    
-
-
- 
-<!-- Existing Booking summary -->
-   
-
-  <div id="booking">
-    
-  </div>
-     
-    
+    <div class="card">
+      <div class="card-header">Confirmed Booking</div>
+      <div class="card-body">
+        <div class="row">
+        <div class="col-md-8 border">
+          <%Booking.Adventure.forEach((foundAdventure)=>{%>
+            <form action="/delete" method="POST">
+          <div class="row">
+            <div class="col"><%=foundAdventure.Date%></div>
+            <div class="col"><%=foundAdventure.Trip%></div>
+            <div class="col"><%=foundAdventure.person%> Persons</div>
+            <div class="col">
+           <button type="submit" name="toDelete"  value="<%=foundAdventure._id%>"  	class="btn  btn-info mb-2">Cancel</button>
+           <a href="/update/<%=foundAdventure._id%>/show">Update</a>
+          </div>
+          </div> 
+        </form>
+        <hr> 
+          <%});%>
+        </div>
+         <div class="col-md-3">
+           <div class="card">
+             <div class="card-header">Book new Adventure</div>
+              <div class="card-body">
+                <fieldset>  
+                  <form class="form-group row" action="/userspage" method="POST">
+                <input type="date" class="form-control mb-2 mr-sm-2" name="adventureDate" id="adventureDate" placeholder="Date"  required="required">
         
-          
+                <input type="text" class="form-control mb-2 mr-sm-2" name="poeple"  id="poeple" placeholder="Number Persons"   required="required">
+        
+                <select class="custom-select  mb-2 mr-sm-2" name="destination" id="destination" placeholder="Choose Adventure"  required="required">
+                <option>Ambado</option>
+                <option>Djibouti City</option>
+                <option>Day</option>
+                <option>Lac Assal</option>
+                <option>Whale Tour</option>
+               </select>
+            
+                <button type="submit" class="btn btn-lg btn-info mb-2">Book</button>
+               </form>
+                </fieldset>
+            </div>
+           </div>
+           </div>
+        </div>
+      </div>
+    </div>
 
-      
-              
-   
              
 <%- include('partials/footer'); -%>
 

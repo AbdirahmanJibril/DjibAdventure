@@ -1,0 +1,28 @@
+<nav  aria-label="Page navigation example">
+     
+    <ul class="pagination fill bd-highlight justify-content-center">
+       <%if (showPosts.page - 1){%>
+      <li class="page-item ">
+       <a class="page-link" style="background-color: lightcyan; color:rgb(4, 128, 42)" href=" /showposts?page=<%=showPosts.page - 1 %>" 
+        
+        >Previous</a>
+       </li>
+      <%}%>
+    
+        <% for (let i=1; i<=showPosts.totalPages; i++){%>
+          <li class="page-item "><a class="page-link" href="/showposts?page=<%= i %>"
+            <%= i === showPosts.page ? "style=background-color:rgb(136,180,180);color:rgb(255,255,255);" :
+             'style=background-color:lightcyan;color:rgb(0,0,0)' %>>
+              <%=i%></a>
+          </li>
+          <%}%>
+   
+    
+
+    <%if ((showPosts.page + 1 )  <= showPosts.totalPages ){%>
+      <li class="page-item">
+        <a class="page-link" style="background-color: lightcyan; color:rgb(4, 128, 42)"  href=" /showposts?page=<%=showPosts.page+1%>">Next</a>
+      </li>
+      <%}%>
+    </ul>
+  </nav>

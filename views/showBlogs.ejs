@@ -1,20 +1,51 @@
+<%- include('partials/header'); -%>
 
-<h1>All Blogs</h1>
 
-    <%show.forEach((foundAdventure)=>{%>
-        <%foundAdventure.Post.forEach((foundPosts)=>{%>
-        
-         <div>
-            <p><h3>Title:<%=foundPosts.title%></h3></p>
-            <p>Place:<%=foundPosts.place%></p>
-            <p>Comments:<%=foundPosts.description%></p>
-            <%foundPosts.images.forEach((image)=>{%> 
-           <p> <img src="<%=image.path%>" alt="myAdventure" width="200px;"/>
-            </p>
+
+   <div class="row">
+     
+      <div class="col-sm-8 offset-md-1"  >
+         <%- include('partials/blogsnav'); -%>
+         <%showPosts.docs.forEach((foundPost)=>{%>
+         <div class="row" >
+            <div class="col-sm-3 md-4" >
+            
+                <img  src="<%=foundPost.image.path%>" class="img-thumbnail showblogs"  alt="myAdventure"  /> 
+              
             </div>
-            <%});%>   
-            <%});%>  
-     <%});%>   
+            <div class="col-sm-5 md4">
+               <%foundPost.Post.forEach((post)=>{%>
+               <div><h5><%=post.title%></h5></div>
+               <a href="/showPost/<%=post._id%>/showApost">Read...</a> 
+               <% });%>
+               <hr class="my-4">
+            </div>
+         </div>
+         <% });%>
+         <%- include('partials/blogsnav'); -%>
+      </div>
+      <div class="col-sm-3 " >
+         <div class="card my-2"><div class="card-title">Lac Assal</div>
+            <img src="images/lacassal.jpg" class="img-thumbnail showblog-side"  alt="lacassal">
+         </div>
+          <div class="card my-2"><div class="card-title">Whale Sark Tour</div>
+            <img src="images/snorkeling1.jpg" class="img-thumbnail showblog-side"  alt="lacassal">
+         </div>
+         <div class="card my-2"><div class="card-title">Ambado</div>
+            <img src="images/lacassal2.jpg" class="img-thumbnail showblog-side"   alt="lacassal">
+         </div>
+         <div class="card my-2"><div class="card-title">Arta Beach</div>
+             <img src="images/beach.jpg" class="img-thumbnail showblog-side"   alt="lacassal">
+          </div>
+     
+        </div>
+   </div>
+   <%- include('partials/blogsnav'); -%>
+
+    
+  <%- include('partials/footer'); -%>      
+    
+              
+            
   
    
-

@@ -11,12 +11,20 @@ body{
   margin:0;
   padding: 0;
 }
-h1,h2,h3{
-  font-weight: 900;
 
-}
+
+  h1,
+  h2,
+  h3 {
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue,
+      helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
 .navbar {
   background-color: #e3fdfd;
+
 }
 .navbar .navbar-brand {
   color: #0b0b0b;
@@ -155,16 +163,16 @@ top:0;
 } */
  
 .jumbotron{
-  /* background-image: url(https://res.cloudinary.com/djibtech/image/upload/v1613550984/beach1_tdqaxj.jpg);
+  background-image: url(https://res.cloudinary.com/djibtech/image/upload/v1613993909/beach7_r1wajj.jpg);
   background-size:cover;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
   position: relative;
   color: white;
   font-weight: 900;
 height: 600px;
 margin-bottom: 50px;
 margin-top: 0;
- background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce);
+ /* background-image: linear-gradient(to right top, #15acb5, #42b6bf, #5ec0c8, #75cbd2, #8bd5dc, #90d7de, #94dae0, #99dce2, #8fd7dd, #85d2d8, #7bced3, #71c9ce); */
 }
 
  p{
@@ -249,6 +257,9 @@ width:20%;
 height: 5%;
 border-radius: 50%;
  
+}
+.card-title{
+  margin: 20px auto;
 }
 .profile-image{
   width: 7%;
@@ -346,7 +357,9 @@ width: 100%;
 /* .carousel-inner .userspage{
   height: 50%;
 } */
-
+/* .container.card-section .card{
+  margin: 50px auto;
+} */
 .container-fluid.cards-section{
   margin-bottom: 50px;
 }
