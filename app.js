@@ -44,10 +44,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://localhost:27017/UserData', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  'mongodb+srv://Jibril:' +
+    process.env.DATABASE_PASSWORD +
+    '@cluster0.rntk0.mongodb.net/DJIBHOLIDAYS?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
