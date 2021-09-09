@@ -51,8 +51,8 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
+// mongoose.set('useFindAndModify', false);
+// mongoose.set('useCreateIndex', true);
 
 passport.use(User.createStrategy());
 
