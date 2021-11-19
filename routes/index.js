@@ -1,16 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const multer = require('multer');
-const { storage } = require('../cloudinary');
-const upload = multer({ storage });
-const https = require('https');
-const passport = require('passport');
-const nodemailer = require('nodemailer');
-const async = require('async');
-const crypto = require('crypto');
-const flash = require('express-flash');
-const { asyncErrorHandler } = require('../middleware/index');
-const { User, Trip, Post } = require('../models/user');
+const express = require('express')
+const router = express.Router()
+const multer = require('multer')
+const { storage } = require('../cloudinary')
+const upload = multer({ storage })
+const https = require('https')
+const passport = require('passport')
+const nodemailer = require('nodemailer')
+const async = require('async')
+const crypto = require('crypto')
+const flash = require('express-flash')
+const { asyncErrorHandler } = require('../middleware/index')
+const { User, Trip, Post } = require('../models/user')
 
 const {
   homeRoute,
@@ -34,30 +34,26 @@ const {
   myBlogs,
   getDashboard,
   getMoucha,
-} = require('../controllers/index');
+} = require('../controllers/index')
 
-const {
-  isLoggedIn,
-  isValidPassword,
-  changePassword,
-} = require('../middleware');
+const { isLoggedIn, isValidPassword, changePassword } = require('../middleware')
 
-const date = new Date();
+const date = new Date()
 
-const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
 
-const bookingDate = date.toLocaleDateString('ar-EG', dateOptions);
+const bookingDate = date.toLocaleDateString('en-GB', dateOptions)
 
-var djibLocal = bookingDate;
-const fullYear = date.getFullYear();
+var djibLocal = bookingDate
+const fullYear = date.getFullYear()
 
 router.get('/', function (req, res) {
-  res.redirect('/home');
-});
+  res.redirect('/home')
+})
 
-router.get('/home', homeRoute);
+router.get('/home', homeRoute)
 
-router.get('/profile', getProfile);
+router.get('/profile', getProfile)
 router.post(
   '/updateProfile',
   isLoggedIn,
@@ -65,84 +61,84 @@ router.post(
   asyncErrorHandler(isValidPassword),
   asyncErrorHandler(changePassword),
   asyncErrorHandler(updateProfile)
-);
+)
 
-router.get('/dashboard', getDashboard);
-router.get('/userspage', usersRoute);
+router.get('/dashboard', getDashboard)
+router.get('/userspage', usersRoute)
 
-router.post('/userspage', bookingRoute);
+router.post('/userspage', bookingRoute)
 
-router.get('/Register', registerRoute);
+router.get('/Register', registerRoute)
 router.post(
   '/Register',
   upload.single('image'),
   asyncErrorHandler(postRegisterRoute)
-);
+)
 //cancel booking
-router.post('/delete', cancelBookingRoute);
+router.post('/delete', cancelBookingRoute)
 
 // show all myblogs
-router.get('/showposts', asyncErrorHandler(getPosts));
+router.get('/showposts', asyncErrorHandler(getPosts))
 
 router.get('/show', function (req, res) {
   res.render('show', {
     AdventurePlace: foundAdventure.Adventure,
     user: req.user,
     fullYear: fullYear,
-  });
-});
+  })
+})
 //////////////////// BOOKING AND ADVENTURES ///////////////////////////////////////////////////
 
 //Adventure get-Update
-router.get('/Moucha', getMoucha);
+router.get('/Moucha', getMoucha)
 
 //Adventure Post-Update
 
 //Booking Update GET-route
-router.get('/update/:id/show', asyncErrorHandler(bookingUpdate));
+router.get('/update/:id/show', asyncErrorHandler(bookingUpdate))
 
 // Booking  update POST-route
-router.post('/update/:id', asyncErrorHandler(changeBooking));
+router.post('/update/:id', asyncErrorHandler(changeBooking))
 
 //////////////////////////// USER BLOGS MANAGEMENT ////////////////////////////////////////////////
 //posts routs
 // user blogs and forms to blog
-router.get('/myblogs', myBlogs);
+router.get('/myblogs', myBlogs)
 
-router.get('/getBlogForm', asyncErrorHandler(getRouteBlogPost));
+router.get('/getBlogForm', asyncErrorHandler(getRouteBlogPost))
 router.post(
   '/submitBlog',
   upload.array('images', 4),
   asyncErrorHandler(postRoutBlogPost)
-);
+)
 
 //Delete Images
-router.get('/deleteImages/:id', asyncErrorHandler(deleteMyimages));
+router.get('/deleteImages/:id', asyncErrorHandler(deleteMyimages))
 
 // Delet/Update Post Get-Route
-router.get('/postUpdate/:id/update', asyncErrorHandler(updatePost));
+router.get('/postUpdate/:id/update', asyncErrorHandler(updatePost))
 
 // changePost
-router.get('/showPost/:id/showApost', asyncErrorHandler(showApost));
+router.get('/showPost/:id/showApost', asyncErrorHandler(showApost))
 // edit post
-router.post('/editPost/:id', asyncErrorHandler(editPost));
+router.post('/editPost/:id', asyncErrorHandler(editPost))
 
 // Delete POST Post-Route
-router.post('/deletPost/:id', asyncErrorHandler(postDelete));
+router.post('/deletPost/:id', asyncErrorHandler(postDelete))
 
 ////////////////////////////////////////// USER LOGING / LOGOUT ROUTES /////////////////////////////////
 
 // Login Get-Route
 router.get('/Login', function (req, res) {
-  res.render('Login', { user: req.user, error: req.flash('error'), fullYear });
-});
+  res.render('Login', { user: req.user, error: req.flash('error'), fullYear })
+})
 
 // Logout Get-Route
 router.get('/logout', function (req, res) {
-  req.logout();
-  req.flash('loggedout', 'you have successfully logged out');
-  res.redirect('/');
-});
+  req.logout()
+  req.flash('loggedout', 'you have successfully logged out')
+  res.redirect('/')
+})
 
 router.post(
   '/login',
@@ -152,7 +148,7 @@ router.post(
     failureRedirect: '/login',
     failureFlash: true,
   })
-);
+)
 
 ////////////////////////////////////// PASSWORD RESET ROUTES //////////////////////////////////////////
 //forgot Get-Route
@@ -161,8 +157,8 @@ router.get('/forgot', function (req, res) {
     user: req.user,
     error: req.flash('error'),
     info: req.flash('info'),
-  });
-});
+  })
+})
 
 //forgot Post-Route
 router.post('/forgot', function (req, res, next) {
@@ -170,24 +166,24 @@ router.post('/forgot', function (req, res, next) {
     [
       function (done) {
         crypto.randomBytes(20, function (err, buf) {
-          var token = buf.toString('hex');
-          done(err, token);
-        });
+          var token = buf.toString('hex')
+          done(err, token)
+        })
       },
       function (token, done) {
         User.findOne({ email: req.body.email }, function (err, user) {
           if (!user) {
-            req.flash('error', 'No account with that email address exists.');
-            return res.redirect('/forgot');
+            req.flash('error', 'No account with that email address exists.')
+            return res.redirect('/forgot')
           }
 
-          user.resetPasswordToken = token;
-          user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+          user.resetPasswordToken = token
+          user.resetPasswordExpires = Date.now() + 3600000 // 1 hour
 
           user.save(function (err) {
-            done(err, token, user);
-          });
-        });
+            done(err, token, user)
+          })
+        })
       },
       function (token, user, done) {
         var smtpTransport = nodemailer.createTransport({
@@ -196,7 +192,7 @@ router.post('/forgot', function (req, res, next) {
             user: 'djibtechnology@gmail.com',
             pass: process.env.EMAIL_PASSW,
           },
-        });
+        })
         var mailOptions = {
           to: user.email,
           from: 'djibtechnology@gmail.com',
@@ -210,25 +206,25 @@ router.post('/forgot', function (req, res, next) {
             token +
             '\n\n' +
             'If you did not request this, please ignore this email and your password will remain unchanged.\n',
-        };
+        }
         smtpTransport.sendMail(mailOptions, function (err) {
           req.flash(
             'info',
             'An e-mail has been sent to ' +
               user.email +
               ' with further instructions.'
-          );
-          done(err, 'done');
-        });
+          )
+          done(err, 'done')
+        })
       },
     ],
     function (err) {
-      if (err) return next(err);
+      if (err) return next(err)
 
-      res.redirect('/forgot');
+      res.redirect('/forgot')
     }
-  );
-});
+  )
+})
 
 //Reset Get-Route
 router.get('/reset/:token', function (req, res) {
@@ -239,13 +235,13 @@ router.get('/reset/:token', function (req, res) {
     },
     function (err, user) {
       if (!user) {
-        req.flash('error', 'Password reset token is invalid or has expired.');
-        return res.redirect('/forgot');
+        req.flash('error', 'Password reset token is invalid or has expired.')
+        return res.redirect('/forgot')
       }
-      res.render('reset', { user: req.user, token: req.params.token });
+      res.render('reset', { user: req.user, token: req.params.token })
     }
-  );
-});
+  )
+})
 
 // Reset Post-Route
 router.post('/reset/:token', function (req, res) {
@@ -262,22 +258,22 @@ router.post('/reset/:token', function (req, res) {
               req.flash(
                 'error',
                 'Password reset token is invalid or has expired.'
-              );
-              return res.redirect('back');
+              )
+              return res.redirect('back')
             }
 
             user.setPassword(req.body.password, function (err) {
-              user.resetPasswordToken = undefined;
-              user.resetPasswordExpires = undefined;
+              user.resetPasswordToken = undefined
+              user.resetPasswordExpires = undefined
 
               user.save(function (err) {
                 req.logIn(user, function (err) {
-                  done(err, user);
-                });
-              });
-            });
+                  done(err, user)
+                })
+              })
+            })
           }
-        );
+        )
       },
       function (user, done) {
         var smtpTransport = nodemailer.createTransport({
@@ -286,7 +282,7 @@ router.post('/reset/:token', function (req, res) {
             user: 'djibtechnology@gmail.com',
             pass: process.env.EMAIL_PASSW,
           },
-        });
+        })
         var mailOptions = {
           to: user.email,
           from: 'djibtechnology@gmail.com',
@@ -296,17 +292,17 @@ router.post('/reset/:token', function (req, res) {
             'This is a confirmation that the password for your account ' +
             user.email +
             ' has just been changed.\n',
-        };
+        }
         smtpTransport.sendMail(mailOptions, function (err) {
-          req.flash('success', 'Success! Your password has been changed.');
-          done(err);
-        });
+          req.flash('success', 'Success! Your password has been changed.')
+          done(err)
+        })
       },
     ],
     function (err) {
-      res.redirect('/');
+      res.redirect('/')
     }
-  );
-});
+  )
+})
 
-module.exports = router;
+module.exports = router

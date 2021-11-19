@@ -1,35 +1,35 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const https = require('https');
-var moment = require('moment');
-const path = require('path');
-const mongoose = require('mongoose');
-const ejs = require('ejs');
-const session = require('express-session');
-const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
-const nodemailer = require('nodemailer');
-const async = require('async');
-const crypto = require('crypto');
-const flash = require('express-flash');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const findOrCreate = require('mongoose-findorcreate');
-const cloudinary = require('cloudinary').v2;
-const { User, Trip, Post } = require('./models/user');
+require('dotenv').config()
+const express = require('express')
+const bodyParser = require('body-parser')
+const https = require('https')
+var moment = require('moment')
+const path = require('path')
+const mongoose = require('mongoose')
+const ejs = require('ejs')
+const session = require('express-session')
+const passport = require('passport')
+const passportLocalMongoose = require('passport-local-mongoose')
+const nodemailer = require('nodemailer')
+const async = require('async')
+const crypto = require('crypto')
+const flash = require('express-flash')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
+const findOrCreate = require('mongoose-findorcreate')
+const cloudinary = require('cloudinary').v2
+const { User, Trip, Post } = require('./models/user')
 
 // require routes
-const index = require('./routes/index');
+const index = require('./routes/index')
 // const posts  = require('./routes/posts');
 
-const port = process.env.PORT || 3000;
-const app = express();
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+const port = process.env.PORT || 3000
+const app = express()
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 // app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('*/css', express.static('public/css'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')))
+app.use('*/css', express.static('public/css'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(
   session({
@@ -37,34 +37,34 @@ app.use(
     resave: false,
     saveUninitialized: false,
   })
-);
+)
 
-app.use(flash());
+app.use(flash())
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 mongoose.connect(
   'mongodb+srv://Jibril:' +
     process.env.DATABASE_PASSWORD +
     '@cluster0.rntk0.mongodb.net/DJIBHOLIDAYS?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
-);
+)
 
 // mongoose.set('useFindAndModify', false);
 // mongoose.set('useCreateIndex', true);
 
-passport.use(User.createStrategy());
+passport.use(User.createStrategy())
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
+  done(null, user.id)
+})
 
 passport.deserializeUser(function (id, done) {
   User.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
+    done(err, user)
+  })
+})
 
 passport.use(
   new GoogleStrategy(
@@ -76,40 +76,37 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+        return cb(err, user)
+      })
     }
   )
-);
+)
 
 // Mount routes
-app.use('/', index);
+app.use('/', index)
 
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['profile'] })
-);
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 
 app.get(
   '/auth/google/userspage',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/userspage');
+    res.redirect('/userspage')
   }
-);
+)
 
-// error handler
+// // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+  res.status(err.status || 500)
+  res.render('error')
+})
 
 app.listen(port, function () {
-  console.log('server is up and running');
-});
+  console.log('server is up and running')
+})
