@@ -1,29 +1,62 @@
 <%- include('partials/header'); -%>
+
+<%if (message && message.length){%>
+
+<div class="alert alert-info alert-dismissible fade show" role="alert">
   
+   <h5 class="alert-heading"><%= message%></h5>
    
-<% if (message) { %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%}%>
+
+<%if (success && success.length){%>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+   
+    <h3 class="alert-heading"><%= success%></h3>
+   
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%}%>
+
+
+<!-- <% if (message) { %>
   <div class="message">
       <h2 style="background-color: #7FFFD4; font-size: large;  color: white;"><%= message%></h2>
       <% } %>
-    </div>
-      <div class="success">
+    </div> -->
+      <!-- <div class="success">
         <%if (success){%>
         
          <h2 style="background-color: #079b6a; font-size: large;  color: white;"><%= success%></h2>
          
         <%}%>
-      </div>
+      </div> -->
 <!-- ///////////////////////////////////////Weather API section//////////////////////////////////////// -->
    <section class="weatherSection">
+  
     <div class="weather-div">
-      <p>Djibouti <%=dateandtime%>  </p>
-      <p><i class="fas fa-temperature-high"></i></p>
-      <p><%=Temperature%>C</p>
-      <p><%=WeatherDescription%></p>
-     
-      <p><img class="icon"  src="<%=weatherIcon%>" alt=""></p>
-      </div>
+      
+        <div class="col s6">
+          <p>Djibouti <%=dateandtime%>  </p>
+          <p><i class="fas fa-temperature-high"></i></p>
+          <p><%=Temperature%>C</p>
+          <p><%=WeatherDescription%></p>
+         
+          <p><img class="icon"  src="<%=weatherIcon%>" alt=""></p>
+          
+        </div>
+        
+      
+      
+    
+      
    </section>
+ 
   
     <section class="topsection">
       <div class="jumbotron">
@@ -37,21 +70,7 @@
             <p>Djibout has a diverse landscape, although small country, there are high mountais, flat terrain, dessert, green, Beautifull beaches, worth the visit</p>
             <a class="btn btn-info btn-jumbo " href="#" role="button">Learn more</a>
           </div>
-        
-          <div class="col-7 jumboImage">
-            <!-- <img src="https://res.cloudinary.com/djibtech/image/upload/v1613550984/beach1_tdqaxj.jpg" alt=""> -->
-              <!-- <img class="topImage" src="/images/b.jpg" alt="boat">
-             <svg class="svg-top" viewBox="10 60 250 200" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <clipPath id="user-space" clipPathUnits="userSpaceOnUse">
                  
-                    <path class="blob1" fill="#FF0066" d="M37,-52.7C49.3,-49.7,61.5,-41.7,63.7,-30.9C65.9,-20,58.1,-6.4,57.7,9.5C57.3,25.4,64.3,43.6,60.1,56.4C55.8,69.2,40.2,76.5,23.9,81.3C7.6,86,-9.5,88.2,-25.3,84.4C-41.2,80.6,-55.8,70.8,-66.1,57.9C-76.4,44.9,-82.3,28.8,-83.1,12.9C-83.9,-3,-79.5,-18.7,-73.7,-34.7C-68,-50.7,-60.8,-67,-48.2,-69.9C-35.7,-72.8,-17.9,-62.2,-2.7,-57.9C12.4,-53.6,24.8,-55.7,37,-52.7Z" transform="translate(100 100)" />
-
-                </clipPath>
-              </defs>
-                <image class="imag-svg" width="100%" height="100%" preserveAspectRatio="xMinYMin slice" xlink:href="/images/beach.jpg" clip-path="url(#user-space)"/>
-            </svg>  -->
-         
           </div>
          
           </div>
@@ -60,6 +79,8 @@
  
     </section>        
          
+    
+    
      
     
    <!-- --------------------------------------Crds section--------------------------------- -->
@@ -84,7 +105,7 @@
       <p class="card-text">Beautifull Beach to relax and swim peacfully</p>
     </div>
    
-    <a class="btn btn-info" href="/Moucha" role="button">View</a>
+    <a class="btn btn-info" href="/Ambado" role="button">View</a>
   </div>
   <div class="card">
     <img src="/images/djibouticamels.jpg" class="card-img-top" alt="...">

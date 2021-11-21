@@ -104,6 +104,7 @@ const showApost = async (req, res) => {
 }
 
 //show all blogs
+
 const getPosts = async (req, res) => {
   const myCustomLabels = {
     nextPage: 'next',
@@ -115,13 +116,19 @@ const getPosts = async (req, res) => {
     customLabels: myCustomLabels,
     sort: { 'Post._id': -1 },
   }
+
   let posts = await User.aggregate([
-    { $project: { 'image.path': 1, Post: 1 } },
+    { $project: { Post: 1 } },
     { $sort: { 'Post._id': -1 } },
   ])
   User.aggregatePaginate(posts, options)
+
     .then(function (results) {
-      res.render('showBlogs', { showPosts: results, user: req.user, fullYear })
+      res.render('showBlogs', {
+        showPosts: results,
+        user: req.user,
+        fullYear,
+      })
     })
     .catch(function (err) {
       console.log(err)
@@ -171,6 +178,10 @@ const postRoutBlogPost = async (req, res) => {
 
 const getMoucha = (req, res) => {
   res.render('Moucha', { user: req.user, fullYear })
+}
+
+const getAmbado = (req, res) => {
+  res.render('Ambado', { user: req.user, fullYear })
 }
 // booking route
 const bookingRoute = (req, res) => {
@@ -464,4 +475,5 @@ module.exports = {
   getDashboard,
   showApost,
   getMoucha,
+  getAmbado,
 }

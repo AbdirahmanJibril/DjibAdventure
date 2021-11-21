@@ -14,6 +14,7 @@ const { User, Trip, Post } = require('../models/user')
 
 const {
   homeRoute,
+  getAmbado,
   getPosts,
   getRouteBlogPost,
   postRoutBlogPost,
@@ -91,6 +92,7 @@ router.get('/show', function (req, res) {
 
 //Adventure get-Update
 router.get('/Moucha', getMoucha)
+router.get('/Ambado', getAmbado)
 
 //Adventure Post-Update
 

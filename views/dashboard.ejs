@@ -1,68 +1,86 @@
-<%- include('partials/header'); -%>
+<%- include('partials/header'); -%> <%if (message && message.length){%>
 
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <h3 class="alert-heading"><%= message%></h3>
 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%}%>
 
- 
-<% if (message) { %>
+<!-- <% if (message) { %>
   
   <h2 style="background-color: #7FFFD4; font-size: medium;  color: seagreen;"><%= message%></h2>
-  <% } %>
- <div class="container">
-  <div class="card" style="margin-bottom: 20px; margin-top: 50px; background-color: #c0ebef; color:turquoise;">
+  <% } %> -->
+<div class="container">
+  <div
+    class="card"
+    style="
+      margin-bottom: 20px;
+      margin-top: 50px;
+      background-color: #c0ebef;
+      color: turquoise;
+    "
+  >
     <div class="card-header">
-      <img class="profile-image" src="<%=image.path%>" alt= "<%=user%>'s profile-picture"><%=user%>'s Dashboard
+      <img
+        class="profile-image"
+        src="<%=image.path%>"
+        alt="<%=user%>'s profile-picture"
+      /><%=user%>'s Dashboard
     </div>
   </div>
-  <div class="card justify-content-around"  style="background-color: #c0ebef; margin-bottom:100px";>
-    
-         <div class="row" >
-        <div class="col-sm-6 w-50 p-3">
-          <div class="card " >
-    
-            <div class="card-body">
-             <h5 class="card-title">My Profile</h5>
-              <p class="card-text">View or Update profile.</p><br>
-              <a href="/profile" class="btn btn-info">My Profile</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 w-50 p-3">
-           <div class="card " >
+  <div
+    class="card justify-content-around"
+    style="background-color: #c0ebef; margin-bottom: 100px"
+    ;
+  >
+    <div class="row">
+      <div class="col-sm-6 w-50 p-3">
+        <div class="card">
           <div class="card-body">
-              <h5 class="card-title">My Blogs</h5>
-              <p class="card-text">Create and post your trips story</p>
-              <br>
-              <a href="/myblogs" class="btn btn-info">My Blogs</a>
-            </div>
+            <h5 class="card-title">My Profile</h5>
+            <p class="card-text">View or Update profile.</p>
+            <br />
+            <a href="/profile" class="btn btn-info">My Profile</a>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6 w-50 p-3">
-          <div class="card ">
-            <div class="card-body">
-              <h5 class="card-title">My Trip</h5>
-              <p class="card-text">Book,view, update or Cancel booking.</p>
-              <br>
-              <a href="/userspage" class="btn btn-info">My Booking</a>
-            </div>
+      <div class="col-sm-6 w-50 p-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">My Blogs</h5>
+            <p class="card-text">Create and post your trips story</p>
+            <br />
+            <a href="/myblogs" class="btn btn-info">My Blogs</a>
           </div>
         </div>
-        <div class="col-sm-6 w-50 p-3">
-          <div class="card " >
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With membership take advantage of offers.</p>
-              <br>
-              <a href="#" class="btn btn-info">My Offers</a>
-            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 w-50 p-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">My Trip</h5>
+            <p class="card-text">Book,view, update or Cancel booking.</p>
+            <br />
+            <a href="/userspage" class="btn btn-info">My Booking</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 w-50 p-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With membership take advantage of offers.</p>
+            <br />
+            <a href="#" class="btn btn-info">My Offers</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-
-  
- 
-    <%- include('partials/footer'); -%>
+<%- include('partials/footer'); -%>
